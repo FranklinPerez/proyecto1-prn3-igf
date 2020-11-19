@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('usuarios', 'UsuarioController');
+Route::resource('empleados', 'EmpleadoController');

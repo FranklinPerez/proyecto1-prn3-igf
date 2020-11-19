@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioService } from './usuario/usuario.service';
 import { FormsModule} from '@angular/forms';
+import { EmpleadoComponent } from './empleado/empleado.component';
+import { EmpleadoService } from './empleado/empleado.service';
 
 
 
@@ -13,6 +15,7 @@ import { FormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     UsuarioComponent,
+    EmpleadoComponent,
 
   ],
   imports: [
@@ -21,7 +24,7 @@ import { FormsModule} from '@angular/forms';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [UsuarioService],
+  providers: [UsuarioService, EmpleadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
