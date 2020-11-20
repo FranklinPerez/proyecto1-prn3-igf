@@ -2,9 +2,11 @@
     <label>Usuario: </label>
     <input type="text" class="form-control" [(ngModel)]="current_usuario.username">
     <label>Email: </label>
-    <input type="enail" class="form-control" [(ngModel)]="current_usuario.email">
+    <input type="email" class="form-control" [(ngModel)]="current_usuario.email">
     <label>Contrasenia: </label>
     <input type="password" class="form-control" [(ngModel)]="current_usuario.password">
+    <!--<label>Repita la Contrasenia: </label>
+    <input type="password" class="form-control" [(ngModel)]="current_usuario.repeat_password">-->
     <br>
     <button class="btn btn-primary" (click)="save()">Guardar</button>
 <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
