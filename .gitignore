@@ -17,6 +17,7 @@
 /proyecto1-laravel/Homestead.yaml
 /proyecto1-laravel/npm-debug.log
 /proyecto1-laravel/yarn-error.log
+/proyecto1-laravel/.env
 
 # IDEs and editors
 /.idea
