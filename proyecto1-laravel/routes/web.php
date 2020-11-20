@@ -21,4 +21,5 @@ Route::resource('login', 'LoginController');
 Route::get('login/{username}/{password}', 'LoginController@buscarUsuario');
 Route::resource('empleados', 'EmpleadoController');
 Route::resource('log_empleados','LogEmpleadoController');
+Route::resource('roles', 'RolesController');
 
