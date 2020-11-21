@@ -8,10 +8,12 @@ import { UsuarioService } from './usuario/usuario.service';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
-
-import { FormsModule} from '@angular/forms';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { EmpleadoService } from './empleado/empleado.service';
+
+
+
+
 
 
 
@@ -32,8 +34,6 @@ import { EmpleadoService } from './empleado/empleado.service';
     ReactiveFormsModule
   ],
   providers: [UsuarioService, LoginService],
-
-  providers: [UsuarioService, EmpleadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
