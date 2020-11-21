@@ -73,7 +73,7 @@ export class UsuarioComponent implements OnInit {
 
   verificarSesion(){
     this.CookieValue = this.cookieService.get('estado-sesion');
-    if(this.CookieValue=="cerrada"){
+    if(this.CookieValue=="cerrada"||this.CookieValue==""){
       this.router.navigateByUrl('/login');
     }
   }

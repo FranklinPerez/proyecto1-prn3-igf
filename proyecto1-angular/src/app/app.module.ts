@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { EmpleadoService } from './empleado/empleado.service';
+import { PanelNotificacionSalasComponent } from './panel-notificacion-salas/panel-notificacion-salas.component';
+import { PanelNotificacionSalasService } from './panel-notificacion-salas/panel-notificacion-salas.service';
+
 
 
 
@@ -24,6 +27,10 @@ import { EmpleadoService } from './empleado/empleado.service';
     LoginComponent,
     EmpleadoComponent,
 
+    PanelNotificacionSalasComponent,
+
+
+
 
   ],
   imports: [
@@ -33,7 +40,14 @@ import { EmpleadoService } from './empleado/empleado.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UsuarioService, LoginService],
+
+
+
+
+
+
+
+  providers: [UsuarioService, EmpleadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

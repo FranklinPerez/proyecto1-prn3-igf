@@ -495,6 +495,13 @@
                 "crossdomain",
                 "laravel"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/fruitcake/laravel-cors/issues",
+                "source": "https://github.com/fruitcake/laravel-cors/tree/v2.0.3"
+            },
+=======
+>>>>>>> bbf0cbec53675f938079eb9f030ac4cac6cf3a57
             "funding": [
                 {
                     "url": "https://github.com/barryvdh",
@@ -5636,5 +5643,9 @@
         "php": "^7.2"
     },
     "platform-dev": [],
+<<<<<<< HEAD
+    "plugin-api-version": "2.0.0"
+=======
     "plugin-api-version": "1.1.0"
+>>>>>>> bbf0cbec53675f938079eb9f030ac4cac6cf3a57
 }
