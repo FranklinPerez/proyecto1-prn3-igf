@@ -22,7 +22,10 @@ Route::get('login/{username}/{password}', 'LoginController@buscarUsuario');
 Route::resource('empleados', 'EmpleadoController');
 Route::resource('log_empleados','LogEmpleadoController');
 Route::resource('roles', 'RolesController');
+<<<<<<< HEAD
 Route::resource('panels', 'PanelNotificacionSalasController');
 
 
+=======
+>>>>>>> bbf0cbec53675f938079eb9f030ac4cac6cf3a57
 
