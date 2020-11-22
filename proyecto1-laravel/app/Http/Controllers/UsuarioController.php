@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use App\Usuario;
 
 class UsuarioController extends Controller
@@ -27,7 +28,11 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        return Usuario::create($request->all());
+        return Usuario::create([
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'password' => Crypt::encryptString($request['password']),
+        ]);
     }
 
 
@@ -53,6 +58,8 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario )
     {
+        $password_encriptado = Crypt::encryptString($request['password']);
+        $request['password'] = $password_encriptado;
         $usuario->update($request->all());
         return $usuario;
     }

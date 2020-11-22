@@ -54,6 +54,7 @@ export class UsuarioComponent implements OnInit {
     this.crud_operation.is_visible = true;
     this.crud_operation.is_new = false;
     this.current_usuario = row;
+    this.current_usuario.password = "";
   }
 
   delete(id){
@@ -76,5 +77,6 @@ export class UsuarioComponent implements OnInit {
     if(this.CookieValue=="cerrada"||this.CookieValue==""){
       this.router.navigateByUrl('/login');
     }
+
   }
 }

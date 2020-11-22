@@ -16,11 +16,13 @@ export class LoginComponent implements OnInit {
   private CookieValue: string;
   constructor(private LoginService: LoginService, private router: Router, private cookieService: CookieService) {
     this.data=[];
+    this.verificarSesion();
   }
 
   ngOnInit(): void {
     this.initForm();
   }
+
   initForm(){
     this.formGroup = new FormGroup({
       username: new FormControl('', [Validators.required]),
@@ -45,6 +47,13 @@ loginProcess(){
     });
   }
 }
+verificarSesion(){
+  this.CookieValue = this.cookieService.get('estado-sesion');
+  if(this.CookieValue=="activada"){
+    alert("ya hay una sesion abierta");
+    this.router.navigateByUrl('/');
+  }
 
+}
 
 }
