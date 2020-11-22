@@ -21,9 +21,12 @@ Route::resource('login', 'LoginController');
 Route::get('login/{username}/{password}', 'LoginController@buscarUsuario');
 Route::resource('empleados', 'EmpleadoController');
 Route::resource('log_empleados','LogEmpleadoController');
+<<<<<<< HEAD
+=======
 Route::resource('roles', 'RolesController');
 Route::resource('panels', 'PanelController');
 
 
 
+>>>>>>> 9361ce7123a8177aa801150e33c39eda5353a562
 
