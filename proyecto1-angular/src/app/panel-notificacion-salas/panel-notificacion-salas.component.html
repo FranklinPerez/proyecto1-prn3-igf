@@ -1,12 +1,7 @@
 <div class="form-group" *ngIf="crud_operation.is_visible">
-    <label>Usuario: </label>
-    <input type="text" class="form-control" [(ngModel)]="current_usuario.username">
-    <label>Email: </label>
-    <input type="email" class="form-control" [(ngModel)]="current_usuario.email">
-    <label>Contrasenia: </label>
-    <input type="password" class="form-control" [(ngModel)]="current_usuario.password">
-    <!--<label>Repita la Contrasenia: </label>
-    <input type="password" class="form-control" [(ngModel)]="current_usuario.repeat_password">-->
+    
+    <label>Mensaje: </label>
+    <input type="text" class="form-control" [(ngModel)]="current_produ.mensaje">
     <br>
     <button class="btn btn-primary" (click)="save()">Guardar</button>
 <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
@@ -14,16 +9,14 @@
 <div class="container-fluid">
     <table class=" table table-striped table-over ">
         <tr>
-            <th>Usuario</th>
-            <th>Email</th>
+            
+            <th>Mensaje</th>
             <th class="text-right">
-                <button class="btm btn-success" (click)="new()">Nuevo Usuario</button>
-                <button class="btn btn-danger" (click)="logout()">Cerrar sesion</button>
+                <button class="btm btn-success" (click)="new()">Nuevo Mensaje</button>
             </th>
         </tr>
         <tr *ngFor="let row of data">
-            <td>{{row.username}}</td>
-            <td>{{row.email}}</td>
+            <td>{{row.mensaje}}</td>
             <td class="text-right">
                 <div *ngIf="!row.confirm">
                     <button class="btn btn-danger" (click)="row.confirm=true">Eliminar</button>
