@@ -8,7 +8,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { AppComponent } from './app.component';
 
 
-import { PanelNotificacionSalasComponent } from './panel-notificacion-salas/panel-notificacion-salas.component';
+import { PanelComponent } from './panel/panel.component';
 
 
 
@@ -21,7 +21,7 @@ const routes: Routes = [
 
     { path: 'empleados', component: EmpleadoComponent},
 
-    { path: 'panels', component: PanelNotificacionSalasComponent}
+    { path: 'panels', component: PanelComponent}
 
 
 ];

@@ -12,7 +12,8 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { EmpleadoService } from './empleado/empleado.service';
 import { PanelNotificacionSalasComponent } from './panel-notificacion-salas/panel-notificacion-salas.component';
 import { PanelNotificacionSalasService } from './panel-notificacion-salas/panel-notificacion-salas.service';
-
+import { PanelComponent } from './panel/panel.component';
+import { PanelService } from './panel/panel.service';
 
 
 
@@ -28,6 +29,8 @@ import { PanelNotificacionSalasService } from './panel-notificacion-salas/panel-
     EmpleadoComponent,
 
     PanelNotificacionSalasComponent,
+
+    PanelComponent,
 
 
 
@@ -47,7 +50,7 @@ import { PanelNotificacionSalasService } from './panel-notificacion-salas/panel-
 
 
 
-  providers: [UsuarioService, EmpleadoService],
+  providers: [UsuarioService, EmpleadoService,PanelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
