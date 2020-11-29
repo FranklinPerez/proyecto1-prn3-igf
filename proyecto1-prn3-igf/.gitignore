@@ -4,7 +4,7 @@
 /proyecto1-angular/out-tsc
 /proyecto1-angular/chrome-profiler-events*.json
 /proyecto1-angular/speed-measure-plugin*.json
-/Proyecto/.git/index.lock
+
 
 /proyecto1-laravel/node_modules
 /proyecto1-laravel/public/hot
