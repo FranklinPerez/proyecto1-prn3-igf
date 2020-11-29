@@ -15,6 +15,9 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { EmpleadoService } from './empleado/empleado.service';
 import { PanelComponent } from './panel/panel.component';
 import { PanelService } from './panel/panel.service';
+import { RolsComponenteComponent } from './rols-componente/rols-componente.component';
+import { RolsServicioService } from './rols-componente/rols-servicio.service';
+
 
 
 
@@ -31,6 +34,9 @@ import { PanelService } from './panel/panel.service';
     PanelComponent,
 
 
+    RolsComponenteComponent,
+
+
 
 
   ],
@@ -42,7 +48,7 @@ import { PanelService } from './panel/panel.service';
     ReactiveFormsModule
   ],
 
-  providers: [UsuarioService, LoginService, LogEmpleadoService, EmpleadoService, PanelService],
+  providers: [UsuarioService, LoginService, LogEmpleadoService, EmpleadoService, PanelService, RolsServicioService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
