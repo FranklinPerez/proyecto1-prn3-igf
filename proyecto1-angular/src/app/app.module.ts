@@ -17,6 +17,7 @@ import { PanelComponent } from './panel/panel.component';
 import { PanelService } from './panel/panel.service';
 import { RolsComponenteComponent } from './rols-componente/rols-componente.component';
 import { RolsServicioService } from './rols-componente/rols-servicio.service';
+import { SalaComponent } from './sala/sala.component';
 
 
 
@@ -30,6 +31,7 @@ import { RolsServicioService } from './rols-componente/rols-servicio.service';
     EmpleadoComponent,
     PanelComponent,
     RolsComponenteComponent,
+    SalaComponent,
   ],
   imports: [
     BrowserModule,
