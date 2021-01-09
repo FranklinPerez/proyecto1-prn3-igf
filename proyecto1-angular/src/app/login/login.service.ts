@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class LoginService {
   constructor(private http: HttpClient) { }
 
-  buscarUsuario(data):Observable<any> {
-    return this.http.get(`${baseURL}` + '/login/' + `${data.username}` + '/' + `${data.password}`);
+  buscarUsuario(data): Observable<any> {
+    return this.http.post(`${baseURL}/logins`,data);
   }
 }

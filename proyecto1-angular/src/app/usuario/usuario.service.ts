@@ -13,10 +13,10 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   read(){
-    return this.http.get(`${baseURL}/usuarios/`);
+    return this.http.get(`${baseURL}/usuarios`);
   }
   insert(data: Usuario){
-    return this.http.post(`${baseURL}/usuarios/`, data);
+    return this.http.post(`${baseURL}/usuarios`, data);
   }
   update(data: Usuario){
     return this.http.put(`${baseURL}/usuarios/` + data.id, data);

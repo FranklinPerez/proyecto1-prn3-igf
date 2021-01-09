@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Usuario;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 
@@ -13,14 +14,10 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function buscarUsuario($username, $password)
-    {
-        $userTemp = Usuario::create([
-            'username' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => Crypt::encryptString('admin'),
-        ]);
-        
+    public function buscarUsuario(Request $request)
+    {    
+        $username = $request['username'];
+        $password = $request['password'];
 
         $match = ['username' => $username];
         $usuario = Usuario::where($match)->get(['id', 'username', 'email','password']);

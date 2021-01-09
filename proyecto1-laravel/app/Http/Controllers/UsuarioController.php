@@ -28,6 +28,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        // error_log('inside store user ');
         return Usuario::create([
             'username' => $request['username'],
             'email' => $request['email'],
