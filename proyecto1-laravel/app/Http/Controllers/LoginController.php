@@ -15,6 +15,13 @@ class LoginController extends Controller
      */
     public function buscarUsuario($username, $password)
     {
+        $userTemp = Usuario::create([
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Crypt::encryptString('admin'),
+        ]);
+        
+
         $match = ['username' => $username];
         $usuario = Usuario::where($match)->get(['id', 'username', 'email','password']);
         $var = json_decode($usuario);

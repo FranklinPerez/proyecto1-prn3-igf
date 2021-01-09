@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioService } from './usuario/usuario.service';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 
@@ -26,19 +26,10 @@ import { RolsServicioService } from './rols-componente/rols-servicio.service';
     AppComponent,
     UsuarioComponent,
     LoginComponent,
-
     LogEmpleadoComponent,
     EmpleadoComponent,
-
-
     PanelComponent,
-
-
     RolsComponenteComponent,
-
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -48,7 +39,14 @@ import { RolsServicioService } from './rols-componente/rols-servicio.service';
     ReactiveFormsModule
   ],
 
-  providers: [UsuarioService, LoginService, LogEmpleadoService, EmpleadoService, PanelService, RolsServicioService],
-   bootstrap: [AppComponent]
+  providers: [
+    UsuarioService,
+    LoginService,
+    LogEmpleadoService,
+    EmpleadoService,
+    PanelService,
+    RolsServicioService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
