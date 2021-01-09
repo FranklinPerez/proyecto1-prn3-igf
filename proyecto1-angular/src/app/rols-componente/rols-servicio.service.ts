@@ -17,9 +17,9 @@ export class RolsServicioService {
     return this.http.post(`${baseURL}/rols/`, data);
   }
   update(data: RolsClase){
-    return this.http.put(`${baseURL}/rols/` + data.id, data);
+    return this.http.put(`${baseURL}/rols/${data.id}`, data);
   }
   delete(id){
-    return this.http.delete(`${baseURL}/rols/`+id);
+    return this.http.delete(`${baseURL}/rols/${id}`);
   }
 }

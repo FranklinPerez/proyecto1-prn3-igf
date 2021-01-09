@@ -1,7 +1,7 @@
 <div class="d-flex" id="wrapper">
 
   <!-- Sidebar -->
-  <div class="bg-light border-right" id="sidebar-wrapper">
+  <div class="bg-light border-right" id="sidebar-wrapper" *ngIf="sesionActiva">
     <div class="sidebar-heading">Start Bootstrap </div>
     <div class="list-group list-group-flush">
       <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
@@ -29,7 +29,10 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" *ngIf="!sesionActiva" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="sesionActiva" (click)="logout()">Logout</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -47,14 +50,10 @@
       </div>
     </nav>
     <div class="container-fluid pt-4">
-      <router-outlet>
-        <h1>Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on
-          larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional,
-          and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the
-          menu when clicked.</p>
-      </router-outlet>
+      <h2>SIMTRE - Sistema de monitoreo en tiempo real de empleados</h2>
+    
+      <router-outlet (activate)="onActivate($event)">  </router-outlet>
+    
     </div>
   </div>
   <!-- /#page-content-wrapper -->

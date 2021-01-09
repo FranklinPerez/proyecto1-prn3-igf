@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Empleado } from './empleado';
 import { HttpClient } from '@angular/common/http';
+import { baseURL } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,15 @@ export class EmpleadoService {
 
   constructor(private http: HttpClient) { }
   read(){
-    return this.http.get('http://127.0.0.1:8000/empleados');
+    return this.http.get(`${baseURL}/empleados`);
   }
   insert(data: Empleado){
-    return this.http.post('http://127.0.0.1:8000/empleados', data);
+    return this.http.post(`${baseURL}/empleados`, data);
   }
   update(data: Empleado){
-    return this.http.put('http://127.0.0.1:8000/empleados/' + data.id, data);
+    return this.http.put(`${baseURL}/empleados/${data.id}`, data);
   }
   delete(id){
-    return this.http.delete('http://127.0.0.1:8000/empleados/'+id);
+    return this.http.delete(`${baseURL}/empleados/${id}`);
   }
 }

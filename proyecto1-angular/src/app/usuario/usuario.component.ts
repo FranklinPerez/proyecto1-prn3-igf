@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './usuario';
 import { UsuarioService } from './usuario.service';
-import { Router} from '@angular/router';
-import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-producto',
@@ -12,19 +10,15 @@ import {CookieService} from 'ngx-cookie-service';
 export class UsuarioComponent implements OnInit {
   data: Usuario[];
   current_usuario: Usuario;
-  private CookieValue: string;
   crud_operation = {is_new: false, is_visible:false}
-  constructor(private service: UsuarioService, private cookieService: CookieService, private router: Router) {
-    this.data=[];
-    this.verificarSesion();
+  constructor(private service: UsuarioService ) {
+    this.data = [];
    }
 
   ngOnInit() {
-
     this.service.read().subscribe( (res: any[]) =>{
       this.data=res;
       this.current_usuario= new Usuario();
-
     });
   }
 
@@ -34,15 +28,24 @@ export class UsuarioComponent implements OnInit {
     this.crud_operation.is_new = true;
   }
 
-  save(){
-    if(this.crud_operation.is_new){
+  save() {
+    //alert(JSON.stringify(form))
+    if (this.crud_operation.is_new) {
+      alert(JSON.stringify(this.current_usuario.username))
+      if (!this.current_usuario.username) {
+        alert('usuario vacio');
+        return;
+      }
       this.service.insert(this.current_usuario).subscribe(res=>{
         this.current_usuario = new Usuario();
         this.crud_operation.is_visible = false;
         this.ngOnInit();
       });
       return;
+    } else {
+      console.log('aqui esta el error');
     }
+
     this.service.update(this.current_usuario).subscribe(res=>{
       this.current_usuario = new Usuario();
       this.crud_operation.is_visible = false;
@@ -64,19 +67,4 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-  logout(){
-    this.cookieService.set('tipo-usuario', '');
-      this.cookieService.set('estado-sesion', 'cerrada');
-    this.router.navigateByUrl('/login');
-    this.CookieValue = this.cookieService.get('estado-sesion');
-        console.log(this.CookieValue);
-  }
-
-  verificarSesion(){
-    this.CookieValue = this.cookieService.get('estado-sesion');
-    if(this.CookieValue=="cerrada"||this.CookieValue==""){
-      this.router.navigateByUrl('/login');
-    }
-
-  }
 }

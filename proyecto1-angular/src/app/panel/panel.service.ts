@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Panel } from './panel';
 import { HttpClient } from '@angular/common/http';
+import { baseURL } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,15 @@ export class PanelService {
   constructor(private http: HttpClient) { }
 
   read(){
-    return this.http.get('http://127.0.0.1:8000/panels');
+    return this.http.get(`${baseURL}/panels`);
   }
   insert(data: Panel){
-    return this.http.post('http://127.0.0.1:8000/panels', data);
+    return this.http.post(`${baseURL}/panels`, data);
   }
   update(data: Panel){
-    return this.http.put('http://127.0.0.1:8000/panels/' + data.id, data);
+    return this.http.put(`${baseURL}/panels/${data.id}`, data);
   }
   delete(id){
-    return this.http.delete('http://127.0.0.1:8000/panels/'+id);
+    return this.http.delete(`${baseURL}/panels/${id}`);
   }
 }

@@ -3,18 +3,18 @@
         <div class="card-title"> Formulario de empleado</div>
     </div>
     <div class="card-body">
-        <div class="form-group" >
+        <form  ngNativeValidate (ngSubmit)="save()" id="empleado-form"  class="form-group" >
             <label>Codigo Empleado: </label>
-            <input type="text" class="form-control" [(ngModel)]="current_produ.codigoEmpleado">
+            <input type="text" required minlength="1" maxlength="15" class="form-control" [(ngModel)]="current_produ.codigoEmpleado">
             <label>Nombre Empleado: </label>
-            <input type="text" class="form-control" [(ngModel)]="current_produ.nombreEmpleado">
+            <input type="text" required minlength="1" maxlength="100" class="form-control" [(ngModel)]="current_produ.nombreEmpleado">
             <label>Dui Empleado: </label>
-            <input type="text" class="form-control" [(ngModel)]="current_produ.dui">
+            <input type="text" required minlength="9" maxlength="10" class="form-control" [(ngModel)]="current_produ.dui">
             <br>
-        </div>
+        </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-primary" (click)="save()">Guardar</button>
+        <button class="btn btn-primary mr-1" form="empleado-form">Guardar</button>
         <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
     </div>
 </div>
@@ -30,7 +30,7 @@
                 <th>CodigoEmpleado</th>
                 <th>NombreEmpleado</th>
                 <th>Dui</th>
-                <th>Opciones</th>
+                <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
                 <td>{{row.codigoEmpleado}}</td>
@@ -38,11 +38,11 @@
                 <td>{{row.dui}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
-                        <button class="btn btn-danger" (click)="row.confirm=true">Eliminar</button>
+                        <button class="btn btn-danger mr-1" (click)="row.confirm=true">Eliminar</button>
                         <button class="btn btn-warning" (click)="edit(row)">Editar</button>
                     </div>
                     <div *ngIf="row.confirm">
-                        <button class="btn btn-success" (click)="delete(row.id)">Confirmar</button>
+                        <button class="btn btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
                         <button class="btn btn-danger" (click)="row.confirm=false">Cancelar</button>
                     </div>
                 </td>

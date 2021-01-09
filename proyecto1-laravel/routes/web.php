@@ -17,8 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('usuarios', 'UsuarioController');
-Route::resource('login', 'LoginController');
-Route::get('login/{username}/{password}', 'LoginController@buscarUsuario');
+Route::post('logins', 'LoginController@buscarUsuario');
 Route::resource('empleados', 'EmpleadoController');
 Route::resource('log_empleados','LogEmpleadoController');
 Route::resource('rols', 'RolController');
