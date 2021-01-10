@@ -11,6 +11,7 @@ class CreateUsuariosTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
@@ -19,6 +20,9 @@ class CreateUsuariosTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
+            #desconosco por que falla
+            #$table->unsignedBigInteger('rol_id');
+            #$table->foreign('rol_id')->references('id')->on('rols');
         });
     }
 

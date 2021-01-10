@@ -22,4 +22,10 @@ Route::resource('empleados', 'EmpleadoController');
 Route::resource('log_empleados','LogEmpleadoController');
 Route::resource('rols', 'RolController');
 Route::resource('panels', 'PanelController');
+Route::resource('imagen', 'imagenController');
+Route::resource('notificacionPersonal', 'notificacionPersonalController');
+Route::resource('reporte', 'ReporteController');
+Route::resource('sala', 'salaController');
+Route::resource('detalle', 'detalleReporteController');
+
 

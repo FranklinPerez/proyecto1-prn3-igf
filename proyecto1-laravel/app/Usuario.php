@@ -12,4 +12,10 @@ class Usuario extends Model
     {
         $this->attributes['password'] = $value;
     }
+    public function empleado(){
+        return $this->belongs('Apps\Empleado');
+    }
+    public function rol(){
+        return $this->hasOne('App\Rol')
+    }
 }

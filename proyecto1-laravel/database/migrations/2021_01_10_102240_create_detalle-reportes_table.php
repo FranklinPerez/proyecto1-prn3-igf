@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-class CreateRolsTable extends Migration
+class CreateDetalleReportesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,11 @@ class CreateRolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rols', function (Blueprint $table) {
+        Schema::create('detalleReportes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombrerol');
             $table->timestamps();
+            $table->unsignedBigInteger('reporte_id');
+            $table->foreign('reporte_id')->references('id')->on('reportes');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateRolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rols');
+        Schema::dropIfExists('detalleReportes');
     }
 }

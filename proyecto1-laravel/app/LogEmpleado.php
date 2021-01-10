@@ -10,4 +10,13 @@ class LogEmpleado extends Model
     protected $fillable = ['ubicacionlog'];
     /*Como es un modelo se debe poner el mismo que a la columna que guardará 
     su valor en la base de datos que se crea al hacer la migración, solo se modifica ahí.*/
+    public function imagenes(){
+        return $this->hasMany('App\imagen');
+    }
+    public function empleado(){
+        return $this->hasOne('App\Empleado');
+    }
+    public function notificacionPersonal(){
+        return $this->belongsTo('App\NotificacionPersonal');
+    }
 }
