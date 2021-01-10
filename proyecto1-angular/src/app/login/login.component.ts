@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoginService } from './login.service';
-import { Usuario } from '../usuario/usuario';
+import { Usuario } from '../usuario/usuario.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 

@@ -1,21 +1,21 @@
-<div class="card mb-2" *ngIf="crud_operation.is_visible">
+<div class="card mb-2" *ngIf="crudOperation.isVisible">
     <div class="card-header">
         <div class="card-title"> Formulario de empleado</div>
     </div>
     <div class="card-body">
         <form  ngNativeValidate (ngSubmit)="save()" id="empleado-form"  class="form-group" >
             <label>Codigo Empleado: </label>
-            <input type="text" required minlength="1" maxlength="15" class="form-control" [(ngModel)]="current_produ.codigoEmpleado">
+            <input type="text" required minlength="1" maxlength="15" class="form-control" [(ngModel)]="current.codigoEmpleado">
             <label>Nombre Empleado: </label>
-            <input type="text" required minlength="1" maxlength="100" class="form-control" [(ngModel)]="current_produ.nombreEmpleado">
+            <input type="text" required minlength="1" maxlength="100" class="form-control" [(ngModel)]="current.nombreEmpleado">
             <label>Dui Empleado: </label>
-            <input type="text" required minlength="9" maxlength="10" class="form-control" [(ngModel)]="current_produ.dui">
+            <input type="text" required size="10" pattern="[0-9]{8}-[0-9]{1}" class="form-control" [(ngModel)]="current.dui">
             <br>
         </form>
     </div>
     <div class="card-footer">
         <button class="btn btn-primary mr-1" form="empleado-form">Guardar</button>
-        <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
+        <button class="btn btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
     </div>
 </div>
 

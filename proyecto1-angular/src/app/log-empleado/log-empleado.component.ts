@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LogEmpleado } from './log-empleado';
+import { LogEmpleado } from './log-empleado.model';
 import { LogEmpleadoService } from './log-empleado.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { LogEmpleadoService } from './log-empleado.service';
 })
 export class LogEmpleadoComponent implements OnInit {
   data: LogEmpleado[];
-  current_usuario: LogEmpleado;
-  crud_operation = {is_new: false, is_visible:false}
+  current: LogEmpleado;
+  crudOperation = {isNew: false, isVisible:false}
   constructor(private service: LogEmpleadoService) {
     this.data=[];
    }
@@ -18,41 +18,41 @@ export class LogEmpleadoComponent implements OnInit {
   ngOnInit() {
     this.service.read().subscribe( (res: any[]) =>{
       this.data=res;
-      this.current_usuario= new LogEmpleado();
+      this.current= new LogEmpleado();
     });
   }
 
   new(){
-    this.current_usuario = new LogEmpleado();
-    this.crud_operation.is_visible = true;
-    this.crud_operation.is_new = true;
+    this.current = new LogEmpleado();
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = true;
   }
 
   save(){
-    if(this.crud_operation.is_new){
-      this.service.insert(this.current_usuario).subscribe(res=>{
-        this.current_usuario = new LogEmpleado();
-        this.crud_operation.is_visible = false;
+    if(this.crudOperation.isNew){
+      this.service.insert(this.current).subscribe(res=>{
+        this.current = new LogEmpleado();
+        this.crudOperation.isVisible = false;
         this.ngOnInit();
       });
       return;
     }
-    this.service.update(this.current_usuario).subscribe(res=>{
-      this.current_usuario = new LogEmpleado();
-      this.crud_operation.is_visible = false;
+    this.service.update(this.current).subscribe(res=>{
+      this.current = new LogEmpleado();
+      this.crudOperation.isVisible = false;
       this.ngOnInit();
     });
   }
 
   edit(row){
-    this.crud_operation.is_visible = true;
-    this.crud_operation.is_new = false;
-    this.current_usuario = row;
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.current = row;
   }
 
   delete(id){
     this.service.delete(id).subscribe(res=>{
-      this.crud_operation.is_new = false;
+      this.crudOperation.isNew = false;
       this.ngOnInit();
     });
   }

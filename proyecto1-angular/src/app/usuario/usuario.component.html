@@ -1,26 +1,30 @@
-<div class="card mb-2" *ngIf="crud_operation.is_visible">
+<div class="card mb-2" *ngIf="crudOperation.isVisible">
+
     <div class="card-header">
         <div class="card-title"> Formulario de usuario</div>
     </div>
+
     <div class="card-body">
         <form ngNativeValidate (ngSubmit)="save()" id="usuario-form" class="form-group">
             <label>Usuario: </label>
-            <input type="text" required name="username" class="form-control" [(ngModel)]="current_usuario.username"
+            <input type="text" required name="username" class="form-control" [(ngModel)]="current.username"
                 maxlength="40" pattern="[A-Za-z0-9]+"
                 placeholder="Solo se aceptan letras y n&uacute;meros sin espacios.">
             <label>Email: </label>
-            <input type="email" required name="email" class="form-control" [(ngModel)]="current_usuario.email">
-            <label>Contrasenia: </label>
-            <input type="password" required name="password" class="form-control" [(ngModel)]="current_usuario.password"
+            <input type="email" required name="email" class="form-control" [(ngModel)]="current.email">
+            <label>Contraseña: </label>
+            <input type="password" required name="password" class="form-control" [(ngModel)]="current.password"
                 minlength="4" maxlength="100" placeholder="Debe contener de 4 a 100 carateres">
             <!--<label>Repita la Contrasenia: </label>
             <input type="password" class="form-control" [(ngModel)]="current_usuario.repeat_password">-->
         </form>
     </div>
+
     <div class="card-footer">
         <button class="btn btn-primary mr-1" type="submit" form="usuario-form">Guardar</button>
-        <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
+        <button class="btn btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
     </div>
+    
 </div>
 
 

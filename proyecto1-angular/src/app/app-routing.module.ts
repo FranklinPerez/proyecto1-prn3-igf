@@ -4,14 +4,9 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { LogEmpleadoComponent } from './log-empleado/log-empleado.component';
 import { LoginComponent } from './login/login.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
-import { AppComponent } from './app.component';
 import { PanelComponent } from './panel/panel.component';
 import { RolsComponenteComponent } from './rols-componente/rols-componente.component';
-
-
-
-
-
+import { SalaComponent } from './sala/sala.component';
 
 const routes: Routes = [
     { path: 'usuarios', component: UsuarioComponent},
@@ -19,8 +14,8 @@ const routes: Routes = [
     {path: 'log_empleados', component: LogEmpleadoComponent},
     { path: 'empleados', component: EmpleadoComponent},
     { path: 'panels', component: PanelComponent},
-    { path: 'rols', component: RolsComponenteComponent}
-
+    { path: 'rols', component: RolsComponenteComponent},
+    { path: 'salas', component: SalaComponent}
 
 ];
 

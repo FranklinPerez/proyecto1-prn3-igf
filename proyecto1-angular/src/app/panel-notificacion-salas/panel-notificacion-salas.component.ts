@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PanelNotificacionSala } from './panel-notificacion-salas';
+import { PanelNotificacionSala } from './panel-notificacion-salas.model';
 import { PanelNotificacionSalasService } from './panel-notificacion-salas.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { PanelNotificacionSalasService } from './panel-notificacion-salas.servic
 })
 export class PanelNotificacionSalasComponent implements OnInit {
   data: PanelNotificacionSala[];
-  current_produ: PanelNotificacionSala;
-  crud_operation = {is_new: false, is_visible:false}
+  current: PanelNotificacionSala;
+  crudOperation = {isNew: false, isVisible:false}
   constructor(private service: PanelNotificacionSalasService) {
     this.data=[];
    }
@@ -18,41 +18,41 @@ export class PanelNotificacionSalasComponent implements OnInit {
   ngOnInit() {
     this.service.read().subscribe( (res: any[]) =>{
       this.data=res;
-      this.current_produ= new PanelNotificacionSala();
+      this.current= new PanelNotificacionSala();
     });
   }
 
   new(){
-    this.current_produ = new PanelNotificacionSala();
-    this.crud_operation.is_visible = true;
-    this.crud_operation.is_new = true;
+    this.current = new PanelNotificacionSala();
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = true;
   }
 
   save(){
-    if(this.crud_operation.is_new){
-      this.service.insert(this.current_produ).subscribe(res=>{
-        this.current_produ = new PanelNotificacionSala();
-        this.crud_operation.is_visible = false;
+    if(this.crudOperation.isNew){
+      this.service.insert(this.current).subscribe(res=>{
+        this.current = new PanelNotificacionSala();
+        this.crudOperation.isVisible = false;
         this.ngOnInit();
       });
       return;
     }
-    this.service.update(this.current_produ).subscribe(res=>{
-      this.current_produ = new PanelNotificacionSala();
-      this.crud_operation.is_visible = false;
+    this.service.update(this.current).subscribe(res=>{
+      this.current = new PanelNotificacionSala();
+      this.crudOperation.isVisible = false;
       this.ngOnInit();
     });
   }
 
   edit(row){
-    this.crud_operation.is_visible = true;
-    this.crud_operation.is_new = false;
-    this.current_produ = row;
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.current = row;
   }
 
   delete(id){
     this.service.delete(id).subscribe(res=>{
-      this.crud_operation.is_new = false;
+      this.crudOperation.isNew = false;
       this.ngOnInit();
     });
   }

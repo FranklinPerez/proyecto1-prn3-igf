@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { Usuario } from './usuario/usuario';
+import { Usuario } from './usuario/usuario.model';
 
 @Component({
   selector: 'app-root',

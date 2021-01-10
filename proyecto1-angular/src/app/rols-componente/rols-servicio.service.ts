@@ -1,6 +1,6 @@
 import { baseURL } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { RolsClase } from './rols-clase';
+import { RolsClase } from './rols.model';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'

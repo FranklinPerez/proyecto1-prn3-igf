@@ -3,7 +3,6 @@ export class Empleado {
     codigoEmpleado: string;
     nombreEmpleado: string;
     dui: string;
-    constructor(){
-        //vacio
-    }
+    
+    constructor(){}
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Sala } from './sala.model';
+import { SalaService } from './sala.service';
 
 @Component({
   selector: 'app-sala',
@@ -6,10 +8,60 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sala.component.css']
 })
 export class SalaComponent implements OnInit {
+  data: Sala[];
+  current: Sala;
+  crudOperation = { isNew: false, isVisible: false }
+  constructor (private service: SalaService) {
+    this.data = [];
+  }
 
-  constructor() { }
+  ngOnInit() {
+    this.service.read().subscribe((res: any[]) => {
+      this.data = res;
+      this.current = new Sala();
+    });
+  }
 
-  ngOnInit(): void {
+  new() {
+    this.current = new Sala();
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = true;
+  }
+
+  save() {
+    if (this.crudOperation.isNew) {
+      this.service.insert(this.current).subscribe(res => {
+        this.current = new Sala();
+        this.crudOperation.isVisible = false;
+        this.ngOnInit();
+      });
+      return;
+    }
+    this.service.update(this.current).subscribe(res => {
+      this.current = new Sala();
+      this.crudOperation.isVisible = false;
+      this.ngOnInit();
+    });
+  }
+
+  edit(row) {
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.current = row;
+  }
+
+  delete(id) {
+    this.service.delete(id).subscribe(res => {
+      this.crudOperation.isNew = false;
+      this.ngOnInit();
+    });
+  }
+
+  show(id) {
+    this.service.readOne(id).subscribe(res => {
+      this.crudOperation.isNew = false;
+      this.ngOnInit();
+    });
   }
 
 }

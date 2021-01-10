@@ -1,17 +1,17 @@
-<div class="card mb-2" *ngIf="crud_operation.is_visible">
+<div class="card mb-2" *ngIf="crudOperation.isVisible">
     <div class="card-header">
         <div class="card-title"> Formulario de Rol</div>
     </div>
     <div class="card-body">
-        <div class="form-group">
+        <form ngNativeValidate (ngSubmit)="save()" id="rols-componente-form" class="form-group">
             <label>Nombre rol: </label>
-            <input type="text" class="form-control" [(ngModel)]="current_produ.nombrerol">
+            <input type="text" class="form-control" [(ngModel)]="current.nombrerol">
             <br>
-        </div>
+        </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-primary mr-1" (click)="save()">Guardar</button>
-        <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
+        <button class="btn btn-primary mr-1" id="rols-componente-form">Guardar</button>
+        <button class="btn btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
     </div>
 </div>
 

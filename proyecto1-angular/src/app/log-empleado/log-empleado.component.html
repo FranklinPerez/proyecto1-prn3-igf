@@ -1,22 +1,18 @@
 
-<div class="container-fluid">
-
-</div>
-
-<div class="card mb-2" *ngIf="crud_operation.is_visible">
+<div class="card mb-2" *ngIf="crudOperation.isVisible">
     <div class="card-header">
         <div class="card-title"> Formulario de Logs de empleado</div>
     </div>
     <div class="card-body">
-        <div class="form-group">
+        <form ngNativeValidate (ngSubmit)="save()" id="log-empleado-form"  class="form-group">
             <label>Ubicación: </label>
-            <input type="text" class="form-control" [(ngModel)]="current_usuario.ubicacionlog">
+            <input type="text" class="form-control" [(ngModel)]="current.ubicacionlog">
             <br>
-        </div>
+        </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-primary mr-1" (click)="save()">Guardar</button>
-        <button class="btn btn-danger" (click)="crud_operation.is_visible=false">Cancelar</button>
+        <button class="btn btn-primary mr-1"  form="log-empleado-form">Guardar</button>
+        <button class="btn btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
     </div>
 </div>
 

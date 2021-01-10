@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PanelNotificacionSala } from './panel-notificacion-salas';
+import { PanelNotificacionSala } from './panel-notificacion-salas.model';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from 'src/environments/environment';
 
