@@ -11,7 +11,7 @@ export class EmpleadoComponent implements OnInit {
 
   data: Empleado[];
   current: Empleado;
-  crudOperation = {isNew: false, isVisible:false}
+  crudOperation = {isNew: false, isVisible:false, isEditable:true}
   constructor(private service: EmpleadoService) {
     this.data=[];
    }
@@ -57,6 +57,17 @@ export class EmpleadoComponent implements OnInit {
       this.crudOperation.isNew = false;
       this.ngOnInit();
     });
+  }
+  show(row){
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.crudOperation.isEditable=false;
+    this.current = row;
+    alert(JSON.stringify(this.current))
+  }
+  onCancelBtn(){
+    this.crudOperation.isVisible=false;
+    this.crudOperation.isEditable=true;
   }
 
 }

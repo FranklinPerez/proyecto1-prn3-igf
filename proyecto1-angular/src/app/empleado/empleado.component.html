@@ -3,19 +3,27 @@
         <div class="card-title"> Formulario de empleado</div>
     </div>
     <div class="card-body">
-        <form  ngNativeValidate (ngSubmit)="save()" id="empleado-form"  class="form-group" >
+        <form  ngNativeValidate (ngSubmit)="save()" id="empleado-form"  class="form-group" 
+            [attr.disabled]="crudOperation.isEditable?null:''">
             <label>Codigo Empleado: </label>
-            <input type="text" required minlength="1" name="codigoEmpleado" maxlength="15" class="form-control" [(ngModel)]="current.codigoEmpleado">
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" 
+                minlength="1" name="codigoEmpleado" maxlength="15" class="form-control" [(ngModel)]="current.codigoEmpleado"
+                placeholder="Se aceptan numeros y letras, ejemplo: codigo123">
             <label>Nombre Empleado: </label>
-            <input type="text" required minlength="1" name="nombreEmpleado" maxlength="100" class="form-control" [(ngModel)]="current.nombreEmpleado">
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null"
+                 minlength="1" name="nombreEmpleado" maxlength="100" pattern="[A-Za-z]+" class="form-control" [(ngModel)]="current.nombreEmpleado"
+                 placeholder="Ingresar sin n&uacute;meros o s&iacute;mbolos, ejemplo: Juan">
             <label>Dui Empleado: </label>
-            <input type="text" required size="10" name="dui" pattern="[0-9]{8}-[0-9]{1}" class="form-control" [(ngModel)]="current.dui">
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null"
+                size="10" name="dui" pattern="[0-9]{8}-[0-9]{1}" class="form-control" [(ngModel)]="current.dui"
+                placeholder="Ingrese su n&uacute;mero de DUI con gui&oacute;n, ejemplo: 12345678-9">
             <br>
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" form="empleado-form">Guardar</button>
-        <button class="btn btn-sm btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" 
+            form="empleado-form">Guardar</button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
 </div>
 
