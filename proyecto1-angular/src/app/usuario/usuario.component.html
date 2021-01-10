@@ -5,26 +5,34 @@
     </div>
 
     <div class="card-body">
-        <form ngNativeValidate (ngSubmit)="save()" id="usuario-form" class="form-group">
+        <form ngNativeValidate (ngSubmit)="save()" id="usuario-form" class="form-group"
+            [attr.disabled]="crudOperation.isEditable?null:''">
+            
             <label>Usuario: </label>
-            <input type="text" required name="username" class="form-control" [(ngModel)]="current.username"
-                maxlength="40" pattern="[A-Za-z0-9]+"
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" name="username" class="form-control"
+                [(ngModel)]="current.username" maxlength="40" pattern="[A-Za-z0-9]+"
                 placeholder="Solo se aceptan letras y n&uacute;meros sin espacios.">
+            
             <label>Email: </label>
-            <input type="email" required name="email" class="form-control" [(ngModel)]="current.email">
+            <input type="email" required [attr.readonly]="!crudOperation.isEditable?true:null" name="email" class="form-control" 
+            [(ngModel)]="current.email">
+
             <label>Contraseña: </label>
-            <input type="password" required name="password" class="form-control" [(ngModel)]="current.password"
-                minlength="4" maxlength="100" placeholder="Debe contener de 4 a 100 carateres">
+            <input type="password" required [attr.readonly]="!crudOperation.isEditable?true:null" name="password" class="form-control" 
+            [(ngModel)]="current.password" minlength="4" maxlength="100" placeholder="Debe contener de 4 a 100 carateres">
+           
             <!--<label>Repita la Contrasenia: </label>
             <input type="password" class="form-control" [(ngModel)]="current_usuario.repeat_password">-->
+
         </form>
     </div>
 
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" type="submit" form="usuario-form">Guardar</button>
-        <button class="btn btn-sm btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" type="submit"
+            form="usuario-form">Guardar</button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
-    
+
 </div>
 
 
@@ -45,6 +53,7 @@
                 <td>{{row.email}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
+                        <button class="btn btn-sm btn-info mr-1" (click)="show(row)">Ver</button>
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
                         <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
                     </div>

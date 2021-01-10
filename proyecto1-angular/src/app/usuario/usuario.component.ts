@@ -10,7 +10,7 @@ import { UsuarioService } from './usuario.service';
 export class UsuarioComponent implements OnInit {
   data: Usuario[];
   current: Usuario;
-  crudOperation = { isNew: false, isVisible: false }
+  crudOperation = { isNew: false, isVisible: false, isEditable: true }
   constructor (private service: UsuarioService) {
     this.data = [];
   }
@@ -64,6 +64,19 @@ export class UsuarioComponent implements OnInit {
       this.crudOperation.isNew = false;
       this.ngOnInit();
     });
+  }
+
+  show(row) {
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.crudOperation.isEditable = false;
+    this.current = row;
+    this.current.password = "";
+  }
+
+  onCancelBtn() {
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable = true;
   }
 
 }

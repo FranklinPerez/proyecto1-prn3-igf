@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Sala } from './sala.model';
 import { SalaService } from './sala.service';
+//import * as screenshot from 'screenshot-desktop';
 
 @Component({
   selector: 'app-sala',
@@ -62,6 +63,14 @@ export class SalaComponent implements OnInit {
       this.crudOperation.isNew = false;
       this.ngOnInit();
     });
+  }
+
+  capturar() {
+   // screenshot({ filename: 'shot.jpg' }).then((imgPath) => {
+      // imgPath: absolute path to screenshot
+      // created in current working directory named shot.png
+    //});
+     
   }
 
 }
