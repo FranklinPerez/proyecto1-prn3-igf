@@ -2,15 +2,25 @@
 
   <!-- Sidebar -->
   <div class="bg-light border-right" id="sidebar-wrapper" *ngIf="sesionActiva">
-    <div class="sidebar-heading">SIMTRE</div>
+    <div class="sidebar-heading">
+      <h4>SIMTRE</h4>
+    </div>
     <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/usuarios/">usuarios</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/empleados">Empleados</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/log_empleados">LogEmpleados</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/panels">Panel</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/rols">Roles</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/salas">Salas</a>
+      <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-home mr-1"></i>Home</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/usuarios/"><i
+          class="fa fa-users mr-1"></i>usuarios</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/rols"><i
+          class="fa fa-users mr-1"></i>Roles</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/empleados"><i
+          class="fa fa-users  mr-1"></i>Empleados</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/log_empleados"><i
+          class="fa fa-list  mr-1"></i>LogEmpleados</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/noti-panels"><i
+          class="fa fa-comments mr-1"></i>Panel notificaciones</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/panels"><i
+          class="fa fa-comments mr-1"></i>Panel</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/salas"><i
+          class="fa fa-tv mr-1"></i>Salas</a>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -35,28 +45,24 @@
           <li class="nav-item">
             <a class="nav-link" *ngIf="sesionActiva" (click)="logout()">Logout</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-info ml-2" *ngIf="sesionActiva" data-toggle="collapse" href="#noti-sidebar-wrapper"
+              role="button" aria-expanded="false" aria-controls="noti-sidebar-wrapper"><i class="fa fa-bell"></i></a>
           </li>
         </ul>
       </div>
     </nav>
     <div class="container-fluid pt-4">
       <h2>Sistema de monitoreo en tiempo real de empleados</h2>
-      <router-outlet (activate)="onActivate($event)">  </router-outlet>
-    
+      <router-outlet (activate)="onActivate($event)"> </router-outlet>
     </div>
   </div>
   <!-- /#page-content-wrapper -->
+
+  <!-- Sidebar Notificaciones personales-->
+  <app-panel-notificacion *ngIf="sesionActiva"></app-panel-notificacion>
+  <!-- /#sidebar-wrapper -->
+
 
 </div>
 <!-- /#wrapper -->

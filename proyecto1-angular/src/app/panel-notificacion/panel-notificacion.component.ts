@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { PanelNotificacionSala } from './panel-notificacion-salas.model';
-import { PanelNotificacionSalasService } from './panel-notificacion-salas.service';
+import { PanelNotificacion } from './panel-notificacion.model';
+import { PanelNotificacionService } from './panel-notificacion.service';
 
 @Component({
-  selector: 'app-panel-notificacion-salas',
-  templateUrl: './panel-notificacion-salas.component.html',
-  styleUrls: ['./panel-notificacion-salas.component.css']
+  selector: 'app-panel-notificacion',
+  templateUrl: './panel-notificacion.component.html',
+  styleUrls: ['./panel-notificacion.component.css']
 })
-export class PanelNotificacionSalasComponent implements OnInit {
-  data: PanelNotificacionSala[];
-  current: PanelNotificacionSala;
+export class PanelNotificacionComponent implements OnInit {
+  data: PanelNotificacion[];
+  current: PanelNotificacion;
   crudOperation = {isNew: false, isVisible:false}
-  constructor(private service: PanelNotificacionSalasService) {
+  constructor(private service: PanelNotificacionService) {
     this.data=[];
    }
 
   ngOnInit() {
     this.service.read().subscribe( (res: any[]) =>{
       this.data=res;
-      this.current= new PanelNotificacionSala();
+      this.current= new PanelNotificacion();
     });
   }
 
   new(){
-    this.current = new PanelNotificacionSala();
+    this.current = new PanelNotificacion();
     this.crudOperation.isVisible = true;
     this.crudOperation.isNew = true;
   }
@@ -31,14 +31,14 @@ export class PanelNotificacionSalasComponent implements OnInit {
   save(){
     if(this.crudOperation.isNew){
       this.service.insert(this.current).subscribe(res=>{
-        this.current = new PanelNotificacionSala();
+        this.current = new PanelNotificacion();
         this.crudOperation.isVisible = false;
         this.ngOnInit();
       });
       return;
     }
     this.service.update(this.current).subscribe(res=>{
-      this.current = new PanelNotificacionSala();
+      this.current = new PanelNotificacion();
       this.crudOperation.isVisible = false;
       this.ngOnInit();
     });

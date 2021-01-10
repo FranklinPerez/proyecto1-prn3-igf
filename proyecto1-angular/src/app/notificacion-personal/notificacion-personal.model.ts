@@ -1,4 +1,4 @@
-export class PanelNotificacionSala {
+export class NotificacionPersonal {
     id: number;
     mensaje: string;
 

@@ -18,9 +18,11 @@ import { PanelService } from './panel/panel.service';
 import { RolsComponenteComponent } from './rols-componente/rols-componente.component';
 import { RolsServicioService } from './rols-componente/rols-servicio.service';
 import { SalaComponent } from './sala/sala.component';
-
-
-
+import { PanelNotificacionComponent } from './panel-notificacion/panel-notificacion.component';
+import { PanelNotificacionService } from './panel-notificacion/panel-notificacion.service';
+import { SalaService } from './sala/sala.service';
+import { NotificacionPersonalComponent } from './notificacion-personal/notificacion-personal.component';
+import { NotificacionPersonalService } from './notificacion-personal/notificacion-personal.service';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,10 @@ import { SalaComponent } from './sala/sala.component';
     LogEmpleadoComponent,
     EmpleadoComponent,
     PanelComponent,
+    PanelNotificacionComponent,
     RolsComponenteComponent,
     SalaComponent,
+    NotificacionPersonalComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,10 @@ import { SalaComponent } from './sala/sala.component';
     LogEmpleadoService,
     EmpleadoService,
     PanelService,
-    RolsServicioService
+    PanelNotificacionService,
+    RolsServicioService,
+    SalaService,
+    NotificacionPersonalService
   ],
   bootstrap: [AppComponent]
 })

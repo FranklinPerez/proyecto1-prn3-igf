@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PanelNotificacionSala } from './panel-notificacion-salas.model';
+import { NotificacionPersonal } from './notificacion-personal.model';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from 'src/environments/environment';
 
@@ -7,18 +7,18 @@ import { baseURL } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PanelNotificacionSalasService {
-  data: PanelNotificacionSala[];
+export class NotificacionPersonalService {
+  data: NotificacionPersonal[];
 
   constructor(private http: HttpClient) { }
 
   read(){
     return this.http.get(`${baseURL}/panels`);
   }
-  insert(data: PanelNotificacionSala){
+  insert(data: NotificacionPersonal){
     return this.http.post(`${baseURL}/panels`, data);
   }
-  update(data: PanelNotificacionSala){
+  update(data: NotificacionPersonal){
     return this.http.put(`${ baseURL }/panels/${ data.id }`, data);
   }
   delete(id){

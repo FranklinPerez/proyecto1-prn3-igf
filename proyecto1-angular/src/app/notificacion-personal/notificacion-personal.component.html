@@ -1,17 +1,17 @@
 
 <div class="card mb-2" *ngIf="crudOperation.isVisible">
     <div class="card-header">
-        <div class="card-title"> Formulario de Logs de empleado</div>
+        <div class="card-title"> Formulario de notificacion personal</div>
     </div>
     <div class="card-body">
-        <form ngNativeValidate (ngSubmit)="save()" id="log-empleado-form"  class="form-group">
-            <label>Ubicación: </label>
-            <input type="text" name="ubicacionlog" class="form-control" [(ngModel)]="current.ubicacionlog">
+        <form ngNativeValidate (ngSubmit)="save()" id="notificacion-personal-form"  class="form-group">
+            <label>Mensaje: </label>
+            <input type="text" name="mensaje" class="form-control" [(ngModel)]="current.mensaje">
             <br>
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1"  form="log-empleado-form">Guardar</button>
+        <button class="btn btn-sm btn-primary mr-1" form="notificacion-personal-form">Guardar</button>
         <button class="btn btn-sm btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
     </div>
 </div>
@@ -19,17 +19,17 @@
 
 <div class="card">
     <div class="card-header">
-        <strong>Logs de empleados</strong>
-        <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo LogEmpleado</button>
+        <strong>Notificaciones personales</strong>
+        <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo Mensaje</button>
     </div>
     <div class="card-body">
-        <table class=" table table-sm table-striped table-over ">
+        <table class="table table-sm table-striped table-over ">
             <tr>
-                <th>Ubicacion</th>
+                <th>Mensaje</th>
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
-                <td>{{row.ubicacionlog}}</td>
+                <td>{{row.mensaje}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>

@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor (private cookieService: CookieService, private router: Router) {
     this.verificarSesion();
-    //this.sesionActiva = true; // delete 
+    this.sesionActiva = true; // delete 
   }
 
   logout() {
