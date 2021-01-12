@@ -20,8 +20,8 @@ class CreateEmpleadosTable extends Migration
             $table->string('nombreEmpleado');
             $table->string('dui');
             $table->timestamps();
-            #$table->unsignedBigInteger('id_usuario');
-            #$table->foreign('id_usuario')->reference('id')->on('usuarios');
+            $table->unsignedBigInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
         });
     }
 

@@ -21,8 +21,8 @@ class CreateUsuariosTable extends Migration
             $table->string('password');
             $table->timestamps();
             #desconosco por que falla
-            #$table->unsignedBigInteger('rol_id');
-            #$table->foreign('rol_id')->references('id')->on('rols');
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id')->references('id')->on('rols');
         });
     }
 
