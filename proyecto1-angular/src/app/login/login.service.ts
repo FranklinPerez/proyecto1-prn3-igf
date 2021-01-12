@@ -12,4 +12,7 @@ export class LoginService {
   buscarUsuario(data): Observable<any> {
     return this.http.post(`${baseURL}/logins`,data);
   }
+  cerrarSesion(id): Observable<any> {
+    return this.http.get(`${baseURL}/logout`, id);
+  }
 }

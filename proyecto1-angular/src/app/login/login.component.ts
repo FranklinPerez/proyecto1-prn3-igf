@@ -14,9 +14,9 @@ export class LoginComponent implements OnInit {
   formGroup: FormGroup;
   data: Usuario[];
   private CookieValue: string;
-  
+
   @Output() onLoged: EventEmitter<any> = new EventEmitter();
-  
+
   constructor (private LoginService: LoginService, private router: Router, private cookieService: CookieService) {
     this.data = [];
     this.verificarSesion();
@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
           this.cookieService.set('estado-sesion', 'activada');
           this.CookieValue = this.cookieService.get('tipo-usuario');
           this.CookieValue = this.cookieService.get('estado-sesion');
+          this.cookieService.set('usuario_id', res[0].id);
+          this.cookieService.set('username', res[0].username);
           this.onLoged.emit();
           this.router.navigateByUrl('/usuarios');
         } else {

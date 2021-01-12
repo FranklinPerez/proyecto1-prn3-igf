@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Usuario;
+use App\LogEmpleado;
+use App\Empleado;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -15,7 +18,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function buscarUsuario(Request $request)
-    {    
+    {
         $username = $request['username'];
         $password = $request['password'];
 
@@ -28,6 +31,20 @@ class LoginController extends Controller
 
             if($password_desencriptado == $password){
                 $Resultado = array("resultado"=>"Inicio de sesion exitoso");
+                $match = ['usuario_id' => $usuario[0]->id];
+                $empleado = Empleado::where($match)
+                            ->select('id')->get();
+                    foreach ($empleado as $emp) {
+                        $a = date("Y-m-d");
+                        $a .=" ";
+                        $a .= date("h:i:sa");
+                         DB::table('log_empleados')->insert(['ubicacionlog'=>'DataBase',
+                                                'empleado_id'=>$emp->id,
+                                                'accion'=>'inicio de Sesion',
+                                                'created_at'=>$a,
+                                                'updated_at'=>$a]);
+
+                    }
                 $response = array_merge($var, $Resultado);
                 json_encode($response);
             }
@@ -37,5 +54,29 @@ class LoginController extends Controller
             json_encode($response);
         }
         return response()->json($response);
+    }
+
+    public function cerrarSesion(Request $request){
+        $id = $request['id'];
+        print( $id);
+
+        $match = ['id' => $id];
+        $usuario = Usuario::where($match)->get(['id']);
+        if(count($usuario)>0){
+                $match = ['usuario_id' => $usuario[0]->id];
+                $empleado = Empleado::where($match)
+                            ->select('id')->get();
+                    foreach ($empleado as $emp) {
+                        $a = date("Y-m-d");
+                        $a .=" ";
+                        $a .= date("h:i:sa");
+                         DB::table('log_empleados')->insert(['ubicacionlog'=>'DataBase',
+                                                'empleado_id'=>$emp->id,
+                                                'accion'=>'cierre de Sesion',
+                                                'created_at'=>$a,
+                                                'updated_at'=>$a]);
+
+                    }
+}
     }
 }

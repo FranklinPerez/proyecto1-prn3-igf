@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
-    protected $fillable = ['codigoEmpleado','nombreEmpleado', 'dui','id_usuarios'];
+    protected $fillable = ['codigoEmpleado','nombreEmpleado', 'dui','usuario_id'];
     public function usuario(){
         return $this->hasOne('App\Usuario');
     }
@@ -26,4 +26,4 @@ class Empleado extends Model
         return $this->hasMany('App\NotificacionPersonal');
         }
     }
-}
+

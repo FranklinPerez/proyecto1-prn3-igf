@@ -19,7 +19,8 @@ const routes: Routes = [
     { path: 'noti-panels', component: PanelNotificacionComponent },
     { path: 'rols', component: RolsComponenteComponent },
     { path: 'salas', component: SalaComponent },
-    { path: 'noti-personales', component: NotificacionPersonalComponent }
+    { path: 'noti-personales', component: NotificacionPersonalComponent },
+    { path: 'logout', component: LoginComponent }
 
 ];
 
