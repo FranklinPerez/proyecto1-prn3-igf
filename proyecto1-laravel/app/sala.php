@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class sala extends Model
 {
     
-        public function empleados()
-        {
-            return $this->hasMany('App\Empleado');
-        }
+        
         public function reportes(){
             return $this->hasMany('App\reporte');
         }
@@ -21,3 +18,4 @@ class sala extends Model
             return $this->hasMany('App\Panel');
         }
     }
+

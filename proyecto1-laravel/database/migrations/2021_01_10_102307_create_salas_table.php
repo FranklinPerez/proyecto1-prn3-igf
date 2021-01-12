@@ -17,7 +17,10 @@ class CreateSalasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->unsignedBigInteger('supervisor_id');
-            $table->foreign('supervisor_id')->references('id')->on('empleados');
+            $table->foreign('supervisor_id')
+                    ->references('id')
+                    ->on('empleados');
+
         });
     }
 
