@@ -3,15 +3,20 @@
         <div class="card-title"> Formulario de Rol</div>
     </div>
     <div class="card-body">
-        <form ngNativeValidate (ngSubmit)="save()" id="rols-componente-form" class="form-group">
+        <form ngNativeValidate (ngSubmit)="save()" id="rols-componente-form" class="form-group"
+            [attr.disable]="crudOperation.isEditable?null:''">
             <label>Nombre rol: </label>
-            <input type="text" name="mensaje" class="form-control" [(ngModel)]="current.nombrerol">
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" name="mensaje" class="form-control" [(ngModel)]="current.nombrerol"
+                maxlength="40" pattern="[A-Za-z]+"
+                placeholder="Solo se admiten letras.">
             <br>
         </form>
     </div>
+    
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" id="rols-componente-form">Guardar</button>
-        <button class="btn btn-sm btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" 
+            form="rols-componente-form">Guardar</button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
 </div>
 

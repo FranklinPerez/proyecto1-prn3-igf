@@ -12,7 +12,7 @@ export class PanelComponent implements OnInit {
 
   data: Panel[];
   current: Panel;
-  crudOperation = { isNew: false, isVisible: false };
+  crudOperation = {isNew: false, isVisible:false, isEditable:true}
   permisos: PermisosRecurso = new PermisosRecurso(); // por defecto pone en false todo
     
   constructor (private service: PanelService) {
@@ -62,9 +62,21 @@ export class PanelComponent implements OnInit {
     });
   }
 
-  // capturar el rol del usuario y pasar con el enum Roles correspondiente
-  getPermisos() {
-    this.permisos = getPermisosRecurso(Roles.ADMIN, Recursos.PANEL);
+  show(row){
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.crudOperation.isEditable= false;
+    this.current = row;
   }
+
+  onCancelBtn() {
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable = true;
+  }
+
+    // capturar el rol del usuario y pasar con el enum Roles correspondiente
+    getPermisos() {
+      this.permisos = getPermisosRecurso(Roles.ADMIN, Recursos.PANEL);
+    }
 
 }

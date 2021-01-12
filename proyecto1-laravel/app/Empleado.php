@@ -10,9 +10,7 @@ class Empleado extends Model
     public function usuario(){
         return $this->hasOne('App\Usuario');
     }
-    public function sala(){
-        return $this->belongsTo('App\sala');
-    }
+    
     public function salaSupervisada(){
         return $this->belongsTo('App\sala');
     }
@@ -26,4 +24,5 @@ class Empleado extends Model
         return $this->hasMany('App\NotificacionPersonal');
         }
     }
-}
+
+

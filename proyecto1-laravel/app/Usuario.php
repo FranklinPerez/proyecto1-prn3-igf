@@ -16,6 +16,6 @@ class Usuario extends Model
         return $this->belongs('Apps\Empleado');
     }
     public function rol(){
-        return $this->hasOne('App\Rol')
+        return $this->hasOne('App\Rol');
     }
 }

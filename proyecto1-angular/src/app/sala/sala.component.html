@@ -4,16 +4,20 @@
         <div class="card-title"> Formulario de salas</div>
     </div>
     <div class="card-body">
-        <form ngNativeValidate (ngSubmit)="save()" id="sala-form" class="form-group">
-
-            <label>Mensaje: </label>
-            <input type="text" name="mensaje" class="form-control" [(ngModel)]="current.mensaje">
+        <form ngNativeValidate (ngSubmit)="save()" id="sala-form" class="form-group"
+        [attr.disabled]="crudOperation.isEditable?null:''">
+            
+            <label>N&uacute;mero de sala: </label>
+            <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
+            name="Sala" class="form-control" [(ngModel)]="current.mensaje"
+            min = "1" max="50" 
+            placeholder="Solo se admiten n&uacute;meros.">
             <br>
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" form="sala-form">Guardar</button>
-        <button class="btn btn-sm btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
+        <button class="btn btn-sm btn-primary mr-1" type = "submit" form="sala-form">Guardar</button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
 </div>
 
@@ -27,7 +31,7 @@
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
-                <th>Mensaje</th>
+                <th>N&uacute;mero de sala</th> 
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
@@ -39,7 +43,7 @@
                     </div>
                     <div *ngIf="row.confirm">
                         <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
-                        <button class="btn btn-sm btn-danger" (click)="row.confirm=false">Cancelar</button>
+                        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
                     </div>
                 </td>
             </tr>
