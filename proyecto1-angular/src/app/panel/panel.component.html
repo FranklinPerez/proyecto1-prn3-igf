@@ -20,7 +20,7 @@
 <div class="card">
     <div class="card-header">
         <strong>Paneles</strong>
-        <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo Mensaje</button>
+        <button class="btn btn-sm btn-success float-right" *ngIf="permisos.any.canCreate" (click)="new()">Nuevo Mensaje</button>
     </div>
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
@@ -32,8 +32,8 @@
                 <td>{{row.mensaje}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
-                        <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
-                        <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
+                        <button class="btn btn-sm btn-warning mr-1" *ngIf="permisos.any.canEdit" (click)="edit(row)">Editar</button>
+                        <button class="btn btn-sm btn-danger" *ngIf="permisos.any.canDelete" (click)="row.confirm=true">Eliminar</button>
                     </div>
                     <div *ngIf="row.confirm">
                         <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
