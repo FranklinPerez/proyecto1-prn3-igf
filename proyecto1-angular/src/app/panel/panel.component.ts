@@ -11,7 +11,7 @@ export class PanelComponent implements OnInit {
 
   data: Panel[];
   current: Panel;
-  crudOperation = {isNew: false, isVisible:false}
+  crudOperation = {isNew: false, isVisible:false, isEditable:true}
   constructor(private service: PanelService) {
     this.data=[];
    }
@@ -56,6 +56,18 @@ export class PanelComponent implements OnInit {
       this.crudOperation.isNew = false;
       this.ngOnInit();
     });
+  }
+
+  show(row){
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.crudOperation.isEditable= false;
+    this.current = row;
+  }
+
+  onCancelBtn() {
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable = true;
   }
 
 }

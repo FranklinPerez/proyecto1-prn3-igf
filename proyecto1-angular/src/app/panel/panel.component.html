@@ -1,18 +1,24 @@
 
 <div class="card mb-2" *ngIf="crudOperation.isVisible">
+
     <div class="card-header">
         <div class="card-title"> Formulario de Mensaje</div>
     </div>
     <div class="card-body">
-        <form  ngNativeValidate (ngSubmit)="save()" id="panel-form"  class="form-group">
+        <form  ngNativeValidate (ngSubmit)="save()" id="panel-form"  class="form-group"
+            [attr.disabled]="crudOperation.isEditable?null:''">
+
             <label>Mensaje: </label>
-            <input type="text" name="mensaje" class="form-control" [(ngModel)]="current.mensaje">
-            <br>
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" name="mensaje" class="form-control" [(ngModel)]="current.mensaje"
+                [(ngModel)]="current.mensaje" maxlength="500" 
+                placeholder="Escriba aqu&iacute; su mensaje.">
+            
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" form="panel-form">Guardar</button>
-        <button class="btn btn-sm btn-danger" (click)="crudOperation.isVisible=false">Cancelar</button>
+        <button class="btn btn-sm btn-primary mr-1"  *ngIf="crudOperation.isEditable" type="submit"
+         form="panel-form">Guardar</button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
 </div>
 
@@ -32,6 +38,7 @@
                 <td>{{row.mensaje}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
+                        <button class="btn btn-sm btn-info mr-1" (click)="show(row)">Ver</button>
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
                         <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
                     </div>

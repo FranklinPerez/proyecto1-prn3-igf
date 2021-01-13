@@ -17,8 +17,10 @@ class CreatePanelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('mensaje');
             $table->timestamps();
-            #$table->unsignedBigInteger('sala_id');
-            ##$table->foreign('sala_id')->references('id')->on('sala');
+            /*
+            $table->unsignedBigInteger('sala_id');
+            $table->foreign('sala_id')->references('id')->on('sala');
+            */
         });
     }
 

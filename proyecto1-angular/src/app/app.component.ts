@@ -15,20 +15,20 @@ export class AppComponent {
   current_usuario: Usuario;
   sesionActiva: boolean;
   title = 'SIMTRE';
+   id: number = 0;
 
-  constructor (private cookieService: CookieService, private router: Router, private login: LoginService) {
+  constructor (private cookieService: CookieService , private router: Router, private login: LoginService) {
     this.verificarSesion();
     this.sesionActiva = true; // delete
   }
 
   logout() {
+
     this.cookieService.set('tipo-usuario', '');
     this.cookieService.set('estado-sesion', 'cerrada');
-    this.formGroup = new FormGroup({
-      id: new FormControl(this.cookieService.get('usuario_id') ),
-    });
-     this.login.cerrarSesion(this.formGroup.value);
-     console.log(this.formGroup.value);
+    this.id = parseInt(this.cookieService.get('usuario_id'));
+    console.log(this.id);
+    this.login.cerrarSesion(this.id).subscribe();
     this.router.navigateByUrl('/login');
     this.sesionActiva = this.cookieService.get('estado-sesion') === 'activada';
     console.log(this.sesionActiva);

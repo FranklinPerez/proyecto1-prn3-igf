@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Crypt;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         DB::table('usuarios')->insert([
             'username'  => 'admin',
             'email'     => 'admin@gmail.com',
-            'password'  => bcrypt('admin'),
+            'password'  => Crypt::encryptString('admin'),
         ]);
     }
 }

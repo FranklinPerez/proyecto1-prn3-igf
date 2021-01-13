@@ -19,19 +19,22 @@ class LoginController extends Controller
      */
     public function buscarUsuario(Request $request)
     {
+        date_default_timezone_set("America/El_Salvador");
         $username = $request['username'];
         $password = $request['password'];
-
+        /* print_r($request['username']);
+        print_r($request['password']); */
         $match = ['username' => $username];
         $usuario = Usuario::where($match)->get(['id', 'username', 'email','password']);
+
         $var = json_decode($usuario);
         if(count($usuario)>0){
 
-                $password_desencriptado = Crypt::decryptString($usuario[0]->password);
+                $password_desencriptado = Crypt::decryptString((string)$usuario[0]->password);
 
             if($password_desencriptado == $password){
                 $Resultado = array("resultado"=>"Inicio de sesion exitoso");
-                $match = ['usuario_id' => $usuario[0]->id];
+                $match = ['id_usuario' => $usuario[0]->id];
                 $empleado = Empleado::where($match)
                             ->select('id')->get();
                     foreach ($empleado as $emp) {
@@ -56,14 +59,12 @@ class LoginController extends Controller
         return response()->json($response);
     }
 
-    public function cerrarSesion(Request $request){
-        $id = $request['id'];
-        print( $id);
-
+    public function cerrarSesion($id){
+        date_default_timezone_set("America/El_Salvador");
         $match = ['id' => $id];
         $usuario = Usuario::where($match)->get(['id']);
         if(count($usuario)>0){
-                $match = ['usuario_id' => $usuario[0]->id];
+                $match = ['id_usuario' => $usuario[0]->id];
                 $empleado = Empleado::where($match)
                             ->select('id')->get();
                     foreach ($empleado as $emp) {

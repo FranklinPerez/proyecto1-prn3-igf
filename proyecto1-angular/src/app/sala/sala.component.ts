@@ -11,7 +11,7 @@ import { SalaService } from './sala.service';
 export class SalaComponent implements OnInit {
   data: Sala[];
   current: Sala;
-  crudOperation = { isNew: false, isVisible: false }
+  crudOperation = { isNew: false, isVisible: false, isEditable: true}
   constructor (private service: SalaService) {
     this.data = [];
   }
@@ -58,9 +58,12 @@ export class SalaComponent implements OnInit {
     });
   }
 
-  show(id) {
-    this.service.readOne(id).subscribe(res => {
+  show(row) {
+    this.service.readOne(row).subscribe(res => {
+      this.crudOperation.isVisible = true;
       this.crudOperation.isNew = false;
+      this.crudOperation.isEditable = false;
+      this.current = row;
       this.ngOnInit();
     });
   }
@@ -71,6 +74,11 @@ export class SalaComponent implements OnInit {
       // created in current working directory named shot.png
     //});
      
+  }
+
+  onCancelBtn(){
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable = true;
   }
 
 }

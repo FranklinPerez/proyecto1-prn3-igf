@@ -16,8 +16,11 @@ class CreateReportesTable extends Migration
         Schema::create('reportes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            #$table->unsignedBigInteger('sala_id');
-            #$table->foreign('sala_id')->references('id')->on('sala');
+            /*
+
+            $table->unsignedBigInteger('asignacion_id');
+            $table->foreign('asignacion_id')->references('id')->on('asignacions');
+            */
         });
     }
 

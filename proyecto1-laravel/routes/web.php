@@ -28,6 +28,6 @@ Route::resource('reporte', 'ReporteController');
 Route::resource('sala', 'salaController');
 Route::resource('detalle', 'detalleReporteController');
 
-Route::get('logout', 'LoginController@cerrarSesion');
+Route::get('logouts/{id}', 'LoginController@cerrarSesion');
 
 
