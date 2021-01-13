@@ -13,6 +13,10 @@
             <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null"
                  minlength="1" name="nombreEmpleado" maxlength="100" pattern="[A-Za-z]+" class="form-control" [(ngModel)]="current.nombreEmpleado"
                  placeholder="Ingresar sin n&uacute;meros o s&iacute;mbolos, ejemplo: Juan">
+            <label>Apellido Empleado: </label>
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null"
+                 minlength="5" name="apellidosEmpleado" maxlength="50" pattern="[A-Za-z]+" class="form-control" [(ngModel)]="current.apellidosEmpleado"
+                 placeholder="Ingresar sin n&uacute;meros o s&iacute;mbolos, ejemplo: Bonilla">
             <label>Dui Empleado: </label>
             <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null"
                 size="10" name="dui" pattern="[0-9]{8}-[0-9]{1}" class="form-control" [(ngModel)]="current.dui"
@@ -33,17 +37,25 @@
         <strong>Empleados</strong>
         <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo Empleado</button>
     </div>
+    <div>
+        <select id="s1" ng-model="selected">
+            <option  *ngFor= 'let user of usuarios' value="{{user.username}}">{{user.username}}</option>
+
+        </select>
+    </div>
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
                 <th>CodigoEmpleado</th>
                 <th>NombreEmpleado</th>
+                <th>ApellidoEmpleado</th>
                 <th>Dui</th>
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
                 <td>{{row.codigoEmpleado}}</td>
                 <td>{{row.nombreEmpleado}}</td>
+                <td>{{row.apellidosEmpleado}}</td>
                 <td>{{row.dui}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">

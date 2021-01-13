@@ -2,17 +2,24 @@ import { Injectable } from '@angular/core';
 import { Empleado } from './empleado.model';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from 'src/environments/environment';
+import { Usuario } from '../usuario/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpleadoService {
   data: Empleado[];
+  usuarios: Usuario;
 
-  constructor (private http: HttpClient) { }
+  constructor (private http: HttpClient) { 
+      this.usuarios;
+  }
   
   read(){
     return this.http.get(`${baseURL}/empleados`);
+  }
+  readUsuarios(){
+    return this.http.get(`${baseURL}/usuarios`);
   }
 
   readOne(id){
