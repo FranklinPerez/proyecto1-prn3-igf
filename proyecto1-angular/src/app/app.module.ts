@@ -23,6 +23,8 @@ import { PanelNotificacionService } from './panel-notificacion/panel-notificacio
 import { SalaService } from './sala/sala.service';
 import { NotificacionPersonalComponent } from './notificacion-personal/notificacion-personal.component';
 import { NotificacionPersonalService } from './notificacion-personal/notificacion-personal.service';
+import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.component';
+import { AsignacionSalaService } from './asignacion-sala/asignacion-sala.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { NotificacionPersonalService } from './notificacion-personal/notificacio
     RolsComponenteComponent,
     SalaComponent,
     NotificacionPersonalComponent,
+    AsignacionSalaComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { NotificacionPersonalService } from './notificacion-personal/notificacio
     PanelNotificacionService,
     RolsServicioService,
     SalaService,
-    NotificacionPersonalService
+    NotificacionPersonalService,
+    AsignacionSalaService
   ],
   bootstrap: [AppComponent]
 })
