@@ -16,10 +16,6 @@ export class SalaService {
     return this.http.get(`${baseURL}/salas`);
   }
 
-  readHoras() {
-    return this.http.get(`${baseURL}/salas`);
-  }
-
   insert(data: Sala) {
     return this.http.post(`${baseURL}/salas`, data);
   }
