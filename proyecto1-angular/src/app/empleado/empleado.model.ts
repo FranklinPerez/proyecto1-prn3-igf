@@ -4,6 +4,7 @@ export class Empleado {
     nombreEmpleado: string;
     apellidosEmpleado: string;
     dui: string;
+    usuario_id:number;
 
     constructor(){}
 }
