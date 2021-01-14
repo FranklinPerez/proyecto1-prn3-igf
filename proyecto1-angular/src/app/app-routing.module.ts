@@ -22,9 +22,9 @@ const routes: Routes = [
     { path: 'salas', component: SalaComponent },
     { path: 'noti-personales', component: NotificacionPersonalComponent },
 
-    { path: 'logout', component: LoginComponent }
+    { path: 'logout', component: LoginComponent },
 
-    { path: 'asig-sala', component: AsignacionSalaComponent }
+    { path: 'asig-sala', component: AsignacionSalaComponent },
 
 
 ];

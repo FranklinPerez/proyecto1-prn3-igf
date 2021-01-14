@@ -17,7 +17,7 @@ export class AsignacionSalaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.read().subscribe((res: any[]) => {
+    this.service.readAsigSalas().subscribe((res: any[]) => {
       this.data = res;
       this.current = new AsignacionSala();
     });
@@ -78,7 +78,7 @@ export class AsignacionSalaComponent implements OnInit {
       // imgPath: absolute path to screenshot
       // created in current working directory named shot.png
     //});
-     
+
   }
 
   onCancelBtn(){

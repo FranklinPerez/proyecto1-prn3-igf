@@ -1,3 +1,4 @@
+
 <div class="card mb-2" *ngIf="crudOperation.isVisible">
     <div class="card-header">
         <div class="card-title"> Formulario de salas</div>
@@ -6,7 +7,7 @@
         <form ngNativeValidate (ngSubmit)="save()" id="sala-form" class="form-group"
         [attr.disabled]="crudOperation.isEditable?null:''">
             
-            <label>Asignacio&uacute;n de sala: </label>
+            <label>N&uacute;mero de sala: </label>
             <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
             name="Sala" class="form-control" [(ngModel)]="current.mensaje"
             min = "1" max="50" 
@@ -27,20 +28,33 @@
         <button class="btn btn-sm btn-success float-right ml-1" (click)="capturar()">Capturar</button>
         <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo Sala</button>
     </div>
-    <div class="card-body">
-        <div>
-            <select [value]="user" *ngFor="let user of data" id="s1">
-                <option value={{user.sala}}>{{user.sala}}</option>
+    <div>
+        <select id="s1" ng-model="selected">
+            <option  *ngFor= 'let user of usuarios' value="{{user.username}}">{{user.username}}</option>
 
-            </select>
-        </div>
+        </select>
+    </div>
+    <div>
+        <select id="s1" ng-model="selected">
+            <option  *ngFor= 'let sala of salas' value="{{sala.salas}}">{{sala.salas}}</option>
+
+        </select>
+    </div>
+    <!--div>
+        <select id="s1" ng-model="selected">
+            <option  *ngFor= 'let sala of salas' value="{{sala.salas}}">{{sala.salas}}</option>
+
+        </select>
+        Dejo comentada esta linea de código para cuando arreglen el boton de guardar de salas se utilice como prueba. Ricardo Hernández.
+    </div-->
+    <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
                 <th>N&uacute;mero de sala</th> 
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
-                <td>{{row.sala}}</td>
+                <td>{{row.mensaje}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>

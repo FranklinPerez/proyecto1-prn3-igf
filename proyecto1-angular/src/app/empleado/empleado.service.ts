@@ -11,20 +11,23 @@ export class EmpleadoService {
   data: Empleado[];
   usuarios: Usuario;
 
-<<<<<<< HEAD
-  constructor (private http: HttpClient) { }
 
-=======
-  constructor (private http: HttpClient) { 
+
+  constructor (private http: HttpClient) {
       this.usuarios;
   }
-  
->>>>>>> 3fb8516bc148ad073ed298c26009f6fa861f7a30
+
+
   read(){
     return this.http.get(`${baseURL}/empleados`);
   }
   readUsuarios(){
     return this.http.get(`${baseURL}/usuarios`);
+  }
+
+  readSalas()
+  {
+    return this.http.get(`${baseURL}/salas`)
   }
 
   readOne(id){

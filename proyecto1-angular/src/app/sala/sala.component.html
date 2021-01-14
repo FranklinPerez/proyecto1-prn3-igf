@@ -9,14 +9,42 @@
             
             <label>N&uacute;mero de sala: </label>
             <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
-            name="Sala" class="form-control" [(ngModel)]="current.mensaje"
+            name="sala" class="form-control" [(ngModel)]="current.sala"
             min = "1" max="50" 
             placeholder="Solo se admiten n&uacute;meros.">
+            <!--input type="number" required [attr.readonly]="!crudOperation.isEditable?true:null" name="Sala" class="form-control"
+                [(ngModel)]="current.mensaje" maxlength="50" pattern="[0-9]+"
+                placeholder="Solo se aceptan n&uacute;meros."-->
             <br>
+            <label>Asunto: </label>
+            <input type="text" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
+            name="asunto" class="form-control" [(ng-model)]="current.asunto"
+            minlength="5" maxlength="20" pattern="[A-Za-z]+{ }" class = "form-control" [(ngModel)]="current.asunto"
+            placeholder="Ingresa el asunto (Longitud m&iacute;nima de 5 caracteres)">
+            <br>
+            <label>Tiempo de captura: </label>
+            <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
+            name="tiempoCaptura" class="form-control" [(ng-model)]="current.tiempoCaptura"
+            min="1" max="5" class = "form-control" [(ngModel)]="current.tiempoCaptura"
+            placeholder="Tiempo de espera (En minutos)">
+            <br>
+            <label >Tiempo a trabajar: &nbsp;</label>
+            <select name="seleccionado" id="s1">
+                <!--option [value]="item" *ngFor="let item of horas">{{item.horas}}</option-->
+                <option>4</option>
+                <option>8</option>
+                <!--La interfaz se ve completa con todo lo que pidieron, pero la parte del *ngFor 
+                no sé como hacer que los <option> de la opc. selecc. se guarden en el sala.component.ts-->
+            </select>
+            <!-- <select id="s1" ng-model="selected">
+            <option  *ngFor= 'let h of horas' value="{{}}">{{user.username}}</option>
+
+        </select>-->
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" type = "submit" form="sala-form">Guardar</button>
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" type="submit"
+            form="sala-form">Guardar</button>
         <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
 </div>
@@ -35,7 +63,9 @@
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
-                <td>{{row.mensaje}}</td>
+                <td>{{row.nombre}}</td>
+                <td>{{row.asunto}}</td>
+                <td>{{row.tiempoCaptura}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
