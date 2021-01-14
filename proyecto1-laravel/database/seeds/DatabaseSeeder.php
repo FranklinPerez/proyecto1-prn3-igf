@@ -11,10 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('rols')->insert([
+            'nombrerol'  => 'admin',
+
+
+        ]);
+
         DB::table('usuarios')->insert([
             'username'  => 'admin',
             'email'     => 'admin@gmail.com',
             'password'  => Crypt::encryptString('admin'),
+            'rol_id' => 1,
         ]);
     }
 }

@@ -17,17 +17,17 @@ class CreateAsignacionsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->unsignedBigInteger('id_empleados');
-            $table->foreign('id_empleados')
+
+            $table->unsignedBigInteger('id_empleados_asignado');
+            $table->foreign('id_empleados_asignado')
                     ->references('id')
                     ->on('empleados');
 
-            $table->unsignedBigInteger('id_sala');
-            $table->foreign('id_sala')
+            $table->unsignedBigInteger('id_sala_asignada');
+            $table->foreign('id_sala_asignada')
                     ->references('id')
                     ->on('salas');
-
-        });
+                            });
     }
 
     /**

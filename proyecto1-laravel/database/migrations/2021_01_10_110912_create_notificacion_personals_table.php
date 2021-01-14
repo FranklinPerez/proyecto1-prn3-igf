@@ -16,8 +16,6 @@ class CreateNotificacionPersonalsTable extends Migration
         Schema::create('notificacion_personals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('sesion_id');
-            $table->foreign('sesion_id')->references('id')->on('log_empleados');
             $table->unsignedBigInteger('adjudicado_id');
             $table->foreign('adjudicado_id')->references('id')->on('empleados');
             $table->unsignedBigInteger('enviado_id');

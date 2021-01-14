@@ -42,6 +42,7 @@ export class AppComponent {
   }
 
   onActivate(componentReference) {
+    if(componentReference)
     componentReference.onLoged.subscribe(() => {
       this.verificarSesion();
     })

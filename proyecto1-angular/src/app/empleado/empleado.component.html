@@ -3,10 +3,10 @@
         <div class="card-title"> Formulario de empleado</div>
     </div>
     <div class="card-body">
-        <form  ngNativeValidate (ngSubmit)="save()" id="empleado-form"  class="form-group" 
+        <form  ngNativeValidate (ngSubmit)="save()" id="empleado-form"  class="form-group"
             [attr.disabled]="crudOperation.isEditable?null:''">
             <label>Codigo Empleado: </label>
-            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" 
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null"
                 minlength="1" name="codigoEmpleado" maxlength="15" class="form-control" [(ngModel)]="current.codigoEmpleado"
                 placeholder="Se aceptan numeros y letras, ejemplo: codigo123">
             <label>Nombre Empleado: </label>
@@ -21,7 +21,7 @@
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" 
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable"
             form="empleado-form">Guardar</button>
         <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>

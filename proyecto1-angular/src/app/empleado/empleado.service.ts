@@ -10,7 +10,7 @@ export class EmpleadoService {
   data: Empleado[];
 
   constructor (private http: HttpClient) { }
-  
+
   read(){
     return this.http.get(`${baseURL}/empleados`);
   }

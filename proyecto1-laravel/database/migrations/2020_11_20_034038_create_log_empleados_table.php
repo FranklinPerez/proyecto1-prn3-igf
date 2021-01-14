@@ -18,12 +18,15 @@ class CreateLogEmpleadosTable extends Migration
             $table->string('ubicacionlog');//Mismo nombre que en el modelo para las columnas.
             $table->timestamps();
 
+
             $table->unsignedBigInteger('empleado_id');
             $table->foreign('empleado_id')->references('id')->on('empleados');
             $table->string('accion')->nullable();
 
-            #$table->unsignedBigInteger('asignacion_id');
-            #$table->foreign('asignacion_id')->references('id')->on('asignacions');
+
+
+            $table->unsignedBigInteger('asignacions_id');
+            $table->foreign('asignacions_id')->references('id')->on('asignacions');
 
         });
     }
