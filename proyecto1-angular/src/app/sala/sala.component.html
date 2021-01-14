@@ -12,6 +12,9 @@
             name="sala" class="form-control" [(ngModel)]="current.sala"
             min = "1" max="50" 
             placeholder="Solo se admiten n&uacute;meros.">
+            <!--input type="number" required [attr.readonly]="!crudOperation.isEditable?true:null" name="Sala" class="form-control"
+                [(ngModel)]="current.mensaje" maxlength="50" pattern="[0-9]+"
+                placeholder="Solo se aceptan n&uacute;meros."-->
             <br>
             <label>Asunto: </label>
             <input type="text" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
@@ -40,7 +43,8 @@
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary mr-1" type = "submit" form="sala-form">Guardar</button>
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" type="submit"
+            form="sala-form">Guardar</button>
         <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
     </div>
 </div>
