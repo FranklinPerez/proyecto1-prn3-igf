@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../usuario/usuario.model';
 import { Empleado } from './empleado.model';
 import { EmpleadoService } from './empleado.service';
 
@@ -10,16 +11,22 @@ import { EmpleadoService } from './empleado.service';
 export class EmpleadoComponent implements OnInit {
 
   data: Empleado[];
+  usuarios:Usuario[];
   current: Empleado;
   crudOperation = {isNew: false, isVisible:false, isEditable:true}
   constructor(private service: EmpleadoService) {
     this.data=[];
+    this.usuarios;
    }
 
   ngOnInit() {
     this.service.read().subscribe( (res: any[]) =>{
       this.data=res;
       this.current= new Empleado();
+    });
+
+    this.service.readUsuarios().subscribe((res:any[])=>{
+        this.usuarios=res;
     });
   }
 

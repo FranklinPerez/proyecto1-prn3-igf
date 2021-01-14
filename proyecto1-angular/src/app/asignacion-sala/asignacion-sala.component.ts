@@ -1,31 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Sala } from './sala.model';
-import { SalaService } from './sala.service';
-//import * as screenshot from 'screenshot-desktop';
+import { AsignacionSala } from './asignacion-sala';
+import { AsignacionSalaService } from './asignacion-sala.service';
 
 @Component({
-  selector: 'app-sala',
-  templateUrl: './sala.component.html',
-  styleUrls: ['./sala.component.css']
+  selector: 'app-asignacion-sala',
+  templateUrl: './asignacion-sala.component.html',
+  styleUrls: ['./asignacion-sala.component.css']
 })
-export class SalaComponent implements OnInit {
-  data: Sala[];
-  current: Sala;
- 
+export class AsignacionSalaComponent implements OnInit {
+
+  data: AsignacionSala[];
+  current: AsignacionSala;
   crudOperation = { isNew: false, isVisible: false, isEditable: true}
-  constructor (private service: SalaService) {
+  constructor (private service: AsignacionSalaService) {
     this.data = [];
   }
 
   ngOnInit() {
     this.service.read().subscribe((res: any[]) => {
       this.data = res;
-      this.current = new Sala();
+      this.current = new AsignacionSala();
+    });
+
+    this.service.readSalas().subscribe((res: any[]) => {
+      this.data = res;
+      this.current = new AsignacionSala();
     });
   }
 
   new() {
-    this.current = new Sala();
+    this.current = new AsignacionSala();
     this.crudOperation.isVisible = true;
     this.crudOperation.isNew = true;
   }
@@ -33,14 +37,14 @@ export class SalaComponent implements OnInit {
   save() {
     if (this.crudOperation.isNew) {
       this.service.insert(this.current).subscribe(res => {
-        this.current = new Sala();
+        this.current = new AsignacionSala();
         this.crudOperation.isVisible = false;
         this.ngOnInit();
       });
       return;
     }
     this.service.update(this.current).subscribe(res => {
-      this.current = new Sala();
+      this.current = new AsignacionSala();
       this.crudOperation.isVisible = false;
       this.ngOnInit();
     });

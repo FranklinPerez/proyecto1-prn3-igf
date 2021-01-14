@@ -9,6 +9,7 @@ import { RolsComponenteComponent } from './rols-componente/rols-componente.compo
 import { SalaComponent } from './sala/sala.component';
 import { NotificacionPersonalComponent } from './notificacion-personal/notificacion-personal.component';
 import { PanelNotificacionComponent } from './panel-notificacion/panel-notificacion.component';
+import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.component';
 
 const routes: Routes = [
     { path: 'usuarios', component: UsuarioComponent },
@@ -20,7 +21,11 @@ const routes: Routes = [
     { path: 'rols', component: RolsComponenteComponent },
     { path: 'salas', component: SalaComponent },
     { path: 'noti-personales', component: NotificacionPersonalComponent },
+
     { path: 'logout', component: LoginComponent }
+
+    { path: 'asig-sala', component: AsignacionSalaComponent }
+
 
 ];
 
