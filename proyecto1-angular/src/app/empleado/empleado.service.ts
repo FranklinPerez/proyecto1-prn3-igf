@@ -22,6 +22,11 @@ export class EmpleadoService {
     return this.http.get(`${baseURL}/usuarios`);
   }
 
+  readSalas()
+  {
+    return this.http.get(`${baseURL}/salas`)
+  }
+
   readOne(id){
     return this.http.get(`${baseURL}/empleados/${id}`);
   }

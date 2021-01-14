@@ -29,3 +29,4 @@ Route::resource('sala', 'salaController');
 Route::resource('detalle', 'detalleReporteController');
 
 
+

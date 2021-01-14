@@ -7,14 +7,14 @@ import { AsignacionSala } from './asignacion-sala';
   providedIn: 'root'
 })
 export class AsignacionSalaService {
-
+  data: AsignacionSala[];
   constructor(private http: HttpClient) { }
   read() {
     return this.http.get(`${baseURL}/salas`);
   }
 
-  readSalas() {
-    return this.http.get(`${baseURL}/salas`);
+  readUsuarios() {
+    return this.http.get(`${baseURL}/usuarios`);
   }
 
   insert(data: AsignacionSala) {
@@ -29,7 +29,7 @@ export class AsignacionSalaService {
     return this.http.put(`${baseURL}/salas/${data.id_sala_asignada}`, data);
   }
 
-  delete(id) {
-    return this.http.delete(`${baseURL}/salas/${id}`);
+  delete(data) {
+    return this.http.delete(`${baseURL}/salas/${data}`);
   }
 }
