@@ -10,13 +10,18 @@ import { SalaService } from './sala.service';
 })
 export class SalaComponent implements OnInit {
   data: Sala[];
+  horas: number[];//No se si esta bueno.
   current: Sala;
   crudOperation = { isNew: false, isVisible: false, isEditable: true}
   constructor (private service: SalaService) {
     this.data = [];
+    this.horas;
   }
 
   ngOnInit() {
+    this.service.readHoras().subscribe((res: any[]) => {
+      this.horas = res;
+    });
     this.service.read().subscribe((res: any[]) => {
       this.data = res;
       this.current = new Sala();
