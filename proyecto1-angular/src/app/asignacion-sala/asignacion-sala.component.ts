@@ -86,4 +86,5 @@ export class AsignacionSalaComponent implements OnInit {
     this.crudOperation.isEditable = true;
   }
 
+
 }
