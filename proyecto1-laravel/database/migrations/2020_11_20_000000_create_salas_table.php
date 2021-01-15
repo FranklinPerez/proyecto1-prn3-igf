@@ -16,8 +16,11 @@ class CreateSalasTable extends Migration
         Schema::create('salas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('numeroSala');
+            $table->string('asunto');
+            $table->integer('tiempoTrabajo');
             $table->integer('tiempo_captura');
-            $table->unsignedBigInteger('supervisor_id');
+            $table->unsignedBigInteger('supervisor_id')->nullable();
             $table->foreign('supervisor_id')
                     ->references('id')
                     ->on('empleados');

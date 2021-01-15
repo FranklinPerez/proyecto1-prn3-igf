@@ -6,11 +6,11 @@
     <div class="card-body">
         <form ngNativeValidate (ngSubmit)="save()" id="sala-form" class="form-group"
         [attr.disabled]="crudOperation.isEditable?null:''">
-            
+
             <label>N&uacute;mero de sala: </label>
             <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
-            name="sala" class="form-control" [(ngModel)]="current.sala"
-            min = "1" max="50" 
+            name="sala" class="form-control" [(ngModel)]="current.numeroSala"
+            min = "1" max="50"
             placeholder="Solo se admiten n&uacute;meros.">
             <!--input type="number" required [attr.readonly]="!crudOperation.isEditable?true:null" name="Sala" class="form-control"
                 [(ngModel)]="current.mensaje" maxlength="50" pattern="[0-9]+"
@@ -19,19 +19,19 @@
             <label>Asunto: </label>
             <input type="text" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
             name="asunto" class="form-control" [(ng-model)]="current.asunto"
-            minlength="5" maxlength="20" pattern="[A-Za-z]+{ }" class = "form-control" [(ngModel)]="current.asunto"
+            minlength="5" maxlength="20" pattern="[A-Za-z]+" class = "form-control" [(ngModel)]="current.asunto"
             placeholder="Ingresa el asunto (Longitud m&iacute;nima de 5 caracteres)">
             <br>
             <label>Tiempo de captura: </label>
             <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
-            name="tiempoCaptura" class="form-control" [(ng-model)]="current.tiempoCaptura"
-            min="1" max="5" class = "form-control" [(ngModel)]="current.tiempoCaptura"
+            name="tiempo_captura" class="form-control" [(ngModel)]="current.tiempo_captura"
+            min="1" max="5" class = "form-control"
             placeholder="Tiempo de espera (En minutos)">
             <br>
             <label >Tiempo a trabajar: &nbsp;</label>
-            <select name="seleccionado" id="s1">
-                <option>4</option>
-                <option >8</option>
+            <select [(ngModel)]="current.tiempoTrabajo" name="tiempoTrabajo" id="s1">
+                <option value="4">4</option>
+                <option value="8">8</option>
             </select>
         </form>
     </div>
@@ -52,13 +52,15 @@
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
-                <th>N&uacute;mero de sala</th> 
-                <th class="text-right">Opciones</th>
+                <th>N&uacute;mero de sala</th>
+                <th class="text-right">Asunto de la sala</th>
+                <th class="text-right">Tiempo de Captura</th>
+                <th class="text-right">Opciones de Sala</th>
             </tr>
             <tr *ngFor="let row of data">
-                <td>{{row.nombre}}</td>
-                <td>{{row.asunto}}</td>
-                <td>{{row.tiempoCaptura}</td>
+                <td class="text-center">{{row.numeroSala}}</td>
+                <td class="text-center">{{row.asunto}}</td>
+                <td class="text-center">{{row.tiempo_captura}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
@@ -66,7 +68,7 @@
                     </div>
                     <div *ngIf="row.confirm">
                         <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
-                        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
+                        <button class="btn btn-sm btn-danger" (click)="row.confirm=false">Cancelar</button>
                     </div>
                 </td>
             </tr>

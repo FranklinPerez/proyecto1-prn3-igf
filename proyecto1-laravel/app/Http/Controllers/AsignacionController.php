@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\asignacion;
 class AsignacionController extends Controller
 {
     public function index(Request $request)
     {
-        return asignacion::all();
+        $asig = DB::table('empleados')
+        ->join('asignacions', 'asignacions.id_empleados_asignado', '=', 'empleados.id')
+        ->join('salas', 'asignacions.id_sala_asignada', '=', 'salas.id')
+        ->select('empleados.nombreEmpleado', 'empleados.codigoEmpleado', 'empleados.apellidosEmpleado',
+                'salas.numeroSala', 'salas.asunto', 'asignacions.id')->orderBy('salas.numeroSala', 'asc')->get();
+        return $asig;
     }
     /**
      * Store a newly created resource in storage.

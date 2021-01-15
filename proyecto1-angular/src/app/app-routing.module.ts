@@ -24,7 +24,7 @@ const routes: Routes = [
 
     { path: 'logout', component: LoginComponent },
 
-    { path: 'asig-sala', component: AsignacionSalaComponent },
+    { path: 'asignacionsalas', component: AsignacionSalaComponent },
 
 
 ];

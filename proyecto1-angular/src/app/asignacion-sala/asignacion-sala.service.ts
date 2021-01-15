@@ -14,26 +14,27 @@ export class AsignacionSalaService {
   }
 
   readAsigSalas() {
-    return this.http.get(`${baseURL}/salas`);
+    return this.http.get(`${baseURL}/asignacion`);
   }
 
-  readUsuarios() {
-    return this.http.get(`${baseURL}/usuarios`);
+  readEmpleados() {
+    return this.http.get(`${baseURL}/empleados`);
   }
 
   insert(data: AsignacionSala) {
-    return this.http.post(`${baseURL}/salas`, data);
+    return this.http.post(`${baseURL}/asignacion`, data);
   }
 
   readOne(id: number) {
-    return this.http.get(`${baseURL}/salas/${id}`);
+    return this.http.get(`${baseURL}/asignacion/${id}`);
   }
 
   update(data: AsignacionSala) {
-    return this.http.put(`${baseURL}/salas/${data.id_sala_asignada}`, data);
+    return this.http.put(`${baseURL}/asignacion/${data.id_sala_asignada}`, data);
   }
 
   delete(data) {
-    return this.http.delete(`${baseURL}/salas/${data}`);
+    return this.http.delete(`${baseURL}/asignacion/${data}`);
   }
+
 }

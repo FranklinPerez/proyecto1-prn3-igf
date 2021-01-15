@@ -11,7 +11,7 @@ import { SalaService } from './sala.service';
 export class SalaComponent implements OnInit {
   data: Sala[];
   current: Sala;
- 
+
   crudOperation = { isNew: false, isVisible: false, isEditable: true}
   constructor (private service: SalaService) {
     this.data = [];
@@ -74,12 +74,14 @@ export class SalaComponent implements OnInit {
       // imgPath: absolute path to screenshot
       // created in current working directory named shot.png
     //});
-     
+
   }
 
-  onCancelBtn(){
+  onCancelBtn()
+  {
     this.crudOperation.isVisible = false;
-    this.crudOperation.isEditable = true;
+    this.crudOperation.isEditable=true;
   }
+
 
 }

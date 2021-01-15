@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LogEmpleado extends Model
 {
     /*Atributos de la clase.*/
-    protected $fillable = ['ubicacionlog', 'accion'];
+    protected $fillable = ['ubicacionlog', 'accion', 'empleado_id', 'asignacions_id'];
     /*Como es un modelo se debe poner el mismo que a la columna que guardará
     su valor en la base de datos que se crea al hacer la migración, solo se modifica ahí.*/
     public function imagenes(){

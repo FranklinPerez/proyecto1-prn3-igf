@@ -34,20 +34,20 @@ class LoginController extends Controller
 
             if($password_desencriptado == $password){
                 $Resultado = array("resultado"=>"Inicio de sesion exitoso");
-                $match = ['id_usuario' => $usuario[0]->id];
+                $match = ['usuario_id' => $usuario[0]->id];
                 $empleado = Empleado::where($match)
                             ->select('id')->get();
-                    foreach ($empleado as $emp) {
+                    /* foreach ($empleado as $emp) { */
                         $a = date("Y-m-d");
                         $a .=" ";
                         $a .= date("h:i:sa");
                          DB::table('log_empleados')->insert(['ubicacionlog'=>'DataBase',
-                                                'empleado_id'=>$emp->id,
+                                                'empleado_id'=>$empleado[0]->id,
                                                 'accion'=>'inicio de Sesion',
                                                 'created_at'=>$a,
                                                 'updated_at'=>$a]);
 
-                    }
+                   /*  } */
                 $response = array_merge($var, $Resultado);
                 json_encode($response);
             }
@@ -64,7 +64,7 @@ class LoginController extends Controller
         $match = ['id' => $id];
         $usuario = Usuario::where($match)->get(['id']);
         if(count($usuario)>0){
-                $match = ['id_usuario' => $usuario[0]->id];
+                $match = ['usuario_id' => $usuario[0]->id];
                 $empleado = Empleado::where($match)
                             ->select('id')->get();
                     foreach ($empleado as $emp) {

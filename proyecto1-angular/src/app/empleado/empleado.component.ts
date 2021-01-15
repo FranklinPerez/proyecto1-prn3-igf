@@ -16,7 +16,7 @@ export class EmpleadoComponent implements OnInit {
   crudOperation = {isNew: false, isVisible:false, isEditable:true}
   constructor(private service: EmpleadoService) {
     this.data=[];
-    this.usuarios;
+    this.usuarios=[];
    }
 
   ngOnInit() {
@@ -38,6 +38,7 @@ export class EmpleadoComponent implements OnInit {
 
   save(){
     if(this.crudOperation.isNew){
+      console.log(this.current.usuario_id);
       this.service.insert(this.current).subscribe(res=>{
         this.current = new Empleado();
         this.crudOperation.isVisible = false;
@@ -56,7 +57,6 @@ export class EmpleadoComponent implements OnInit {
     this.crudOperation.isVisible = true;
     this.crudOperation.isNew = false;
     this.current = row;
-    alert(JSON.stringify(this.current))
   }
 
   delete(id){

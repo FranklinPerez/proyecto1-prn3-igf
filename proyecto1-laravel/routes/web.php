@@ -25,7 +25,7 @@ Route::resource('panels', 'PanelController');
 Route::resource('imagen', 'imagenController');
 Route::resource('notificacionPersonal', 'notificacionPersonalController');
 Route::resource('reporte', 'ReporteController');
-Route::resource('sala', 'salaController');
+Route::resource('salas', 'salaController');
 Route::resource('detalle', 'detalleReporteController');
 Route::resource('asignacion', 'AsignacionController');
 Route::get('logouts/{id}', 'LoginController@cerrarSesion');

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AsignacionSala } from './asignacion-sala';
 import { AsignacionSalaService } from './asignacion-sala.service';
+import { Sala} from '../sala/sala.model';
+import { Empleado } from '../empleado/empleado.model';
 
 @Component({
   selector: 'app-asignacion-sala',
@@ -8,7 +10,9 @@ import { AsignacionSalaService } from './asignacion-sala.service';
   styleUrls: ['./asignacion-sala.component.css']
 })
 export class AsignacionSalaComponent implements OnInit {
-
+  empleados: Empleado[];
+  salas: Sala[];
+  asigsala = [];
   data: AsignacionSala[];
   current: AsignacionSala;
   crudOperation = { isNew: false, isVisible: false, isEditable: true}
@@ -18,13 +22,17 @@ export class AsignacionSalaComponent implements OnInit {
 
   ngOnInit() {
     this.service.readAsigSalas().subscribe((res: any[]) => {
-      this.data = res;
+      this.asigsala = res;
       this.current = new AsignacionSala();
     });
 
     this.service.readSalas().subscribe((res: any[]) => {
-      this.data = res;
-      this.current = new AsignacionSala();
+      this.salas = res;
+
+    });
+    this.service.readEmpleados().subscribe((res: any[]) => {
+      this.empleados = res;
+
     });
   }
 

@@ -23,9 +23,7 @@ class CreateLogEmpleadosTable extends Migration
             $table->foreign('empleado_id')->references('id')->on('empleados');
             $table->string('accion')->nullable();
 
-
-
-            $table->unsignedBigInteger('asignacions_id');
+            $table->unsignedBigInteger('asignacions_id')->nullable();
             $table->foreign('asignacions_id')->references('id')->on('asignacions');
 
         });

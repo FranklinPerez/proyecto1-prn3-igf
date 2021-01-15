@@ -6,13 +6,20 @@
     <div class="card-body">
         <form ngNativeValidate (ngSubmit)="save()" id="sala-form" class="form-group"
         [attr.disabled]="crudOperation.isEditable?null:''">
-            
-            <label>N&uacute;mero de sala: </label>
-            <input type="number" required [ttr.readonly] = "!crudOperation.isEditable?true:null"
-            name="Sala" class="form-control" [(ngModel)]="current.mensaje"
-            min = "1" max="50" 
-            placeholder="Solo se admiten n&uacute;meros.">
-            <br>
+
+        <label>Seleccione un Empleado: </label> <br>
+        <select required [attr.readonly]="!crudOperation.isEditable?true:null"
+         class="form-control" id="id_empleados_asignado" [(value)]="current.id_empleados_asignado" name="current.id_empleados_asignado" [(ngModel)]="current.id_empleados_asignado" >
+            <option *ngFor= 'let emp of empleados'  [ngValue]="emp.id">{{emp.codigoEmpleado}} {{emp.nombreEmpleado}} {{emp.apellidosEmpleado}}</option>
+
+        </select>
+        <br>
+        <label>Seleccione una Sala: </label> <br>
+        <select required [attr.readonly]="!crudOperation.isEditable?true:null"
+         class="form-control" id="id_sala_asignada" [(value)]="current.id_sala_asignada" name="current.id_sala_asignada" [(ngModel)]="current.id_sala_asignada" >
+            <option *ngFor= 'let sala of salas'  [ngValue]="sala.id">Sala #: {{sala.numeroSala}} Asunto: {{sala.asunto}}</option>
+
+        </select>
         </form>
     </div>
     <div class="card-footer">
@@ -28,33 +35,23 @@
         <button class="btn btn-sm btn-success float-right ml-1" (click)="capturar()">Capturar</button>
         <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo Sala</button>
     </div>
-    <div>
-        <select id="s1" ng-model="selected">
-            <option  *ngFor= 'let user of usuarios' value="{{user.username}}">{{user.username}}</option>
 
-        </select>
-    </div>
-    <div>
-        <select id="s1" ng-model="selected">
-            <option  *ngFor= 'let sala of salas' value="{{sala.salas}}">{{sala.salas}}</option>
-
-        </select>
-    </div>
-    <!--div>
-        <select id="s1" ng-model="selected">
-            <option  *ngFor= 'let sala of salas' value="{{sala.salas}}">{{sala.salas}}</option>
-
-        </select>
-        Dejo comentada esta linea de código para cuando arreglen el boton de guardar de salas se utilice como prueba. Ricardo Hernández.
-    </div-->
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
-                <th>N&uacute;mero de sala</th> 
+                <th>C&oacute;digo empleado</th>
+                <th>Nombre Empleado</th>
+                <th>N&uacute;mero de Sala</th>
+                <th>Asunto de Sala</th>
+
                 <th class="text-right">Opciones</th>
             </tr>
-            <tr *ngFor="let row of data">
-                <td>{{row.mensaje}}</td>
+            <tr *ngFor="let row of asigsala">
+                <td>{{row.codigoEmpleado}}</td>
+                <td>{{row.apellidosEmpleado}}, {{row.nombreEmpleado}}</td>
+                <td>{{row.numeroSala}}</td>
+                <td>{{row.asunto}}</td>
+
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
@@ -62,7 +59,7 @@
                     </div>
                     <div *ngIf="row.confirm">
                         <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
-                        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
+                        <button class="btn btn-sm btn-danger" (click)="row.confirm=false">Cancelar</button>
                     </div>
                 </td>
             </tr>
