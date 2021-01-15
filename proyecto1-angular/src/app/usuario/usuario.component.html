@@ -21,6 +21,11 @@
             <input type="password" required [attr.readonly]="!crudOperation.isEditable?true:null" name="password" class="form-control" 
             [(ngModel)]="current.password" minlength="4" maxlength="100" placeholder="Debe contener de 4 a 100 carateres">
            
+            <label>Rol: </label>
+            <select class="form-control" name="rol_id" placeholder="seleccione un rol" [(ngModel)]="current.rol_id" required [attr.readonly]="!crudOperation.isEditable?true:null">
+                <option *ngFor="let rol of roles"  [value]="rol.id">{{rol.nombrerol}}</option>
+            </select>           
+
             <!--<label>Repita la Contrasenia: </label>
             <input type="password" class="form-control" [(ngModel)]="current_usuario.repeat_password">-->
 

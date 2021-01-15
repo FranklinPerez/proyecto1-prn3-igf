@@ -10,7 +10,8 @@ import { NotificacionPersonalService } from './notificacion-personal.service';
 export class NotificacionPersonalComponent implements OnInit {
   data: NotificacionPersonal[];
   current: NotificacionPersonal;
-  crudOperation = {isNew: false, isVisible:false}
+  crudOperation = { isNew: false, isVisible: false, isEditable: true }
+  empleados = []
   constructor(private service: NotificacionPersonalService) {
     this.data=[];
    }
@@ -20,6 +21,9 @@ export class NotificacionPersonalComponent implements OnInit {
       this.data=res;
       this.current= new NotificacionPersonal();
     });
+    this.service.readEmpleados().subscribe((res: any[]) => {
+      this.empleados = res;
+    })
   }
 
   new(){
@@ -29,7 +33,8 @@ export class NotificacionPersonalComponent implements OnInit {
   }
 
   save(){
-    if(this.crudOperation.isNew){
+    if (this.crudOperation.isNew) {
+      console.log(this.current)
       this.service.insert(this.current).subscribe(res=>{
         this.current = new NotificacionPersonal();
         this.crudOperation.isVisible = false;
@@ -55,6 +60,18 @@ export class NotificacionPersonalComponent implements OnInit {
       this.crudOperation.isNew = false;
       this.ngOnInit();
     });
+  }
+
+  show(row) {
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.crudOperation.isEditable = false;
+    this.current = row;
+  }
+
+  onCancelBtn() {
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable = true;
   }
   
 

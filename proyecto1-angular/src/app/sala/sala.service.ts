@@ -31,4 +31,8 @@ export class SalaService {
   delete(id) {
     return this.http.delete(`${baseURL}/salas/${id}`);
   }
+
+  sendImages() {
+    
+  }
 }

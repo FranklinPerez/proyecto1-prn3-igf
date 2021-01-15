@@ -12,16 +12,20 @@ export class NotificacionPersonalService {
 
   constructor(private http: HttpClient) { }
 
+  readEmpleados() {
+    return this.http.get(`${baseURL}/empleados`);
+  }
+
   read(){
-    return this.http.get(`${baseURL}/panels`);
+    return this.http.get(`${baseURL}/notificacionPersonal`);
   }
   insert(data: NotificacionPersonal){
-    return this.http.post(`${baseURL}/panels`, data);
+    return this.http.post(`${baseURL}/notificacionPersonal`, data);
   }
   update(data: NotificacionPersonal){
-    return this.http.put(`${ baseURL }/panels/${ data.id }`, data);
+    return this.http.put(`${ baseURL }/notificacionPersonal/${ data.id }`, data);
   }
   delete(id){
-    return this.http.delete(`${baseURL}/panels/${id}`);
+    return this.http.delete(`${baseURL}/notificacionPersonal/${id}`);
   }
 }

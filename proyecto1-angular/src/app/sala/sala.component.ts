@@ -12,7 +12,24 @@ export class SalaComponent implements OnInit {
   data: Sala[];
   current: Sala;
 
-  crudOperation = { isNew: false, isVisible: false, isEditable: true}
+  instancia = {
+    activa: false,
+    capturando: false,
+    camera: false,
+    screen:false
+  }
+  videoElement = <HTMLMediaElement>document.getElementById("video");
+  videoCameraElement = <HTMLMediaElement>document.getElementById("video-camera");
+
+  displayMediaOptions = {
+    video: {
+      cursor: 'always',
+      frameRate: 0.5
+    },
+    audio: false
+  }
+
+  crudOperation = { isNew: false, isVisible: false, isEditable: true }
   constructor (private service: SalaService) {
     this.data = [];
   }
@@ -69,18 +86,107 @@ export class SalaComponent implements OnInit {
     });
   }
 
-  capturar() {
-   // screenshot({ filename: 'shot.jpg' }).then((imgPath) => {
-      // imgPath: absolute path to screenshot
-      // created in current working directory named shot.png
-    //});
+  entrarSala(row) {
+    this.instancia.activa = true;
+  }
+
+  salirSala() {
+    this.instancia.activa = false;
 
   }
 
-  onCancelBtn()
-  {
+  onCancelBtn() {
     this.crudOperation.isVisible = false;
-    this.crudOperation.isEditable=true;
+    this.crudOperation.isEditable = true;
+  }
+
+  async capturar(row) {
+    this.instancia.capturando = true;
+    this.current = row;
+
+    this.videoElement = <HTMLMediaElement>document.getElementById("video");
+    this.videoCameraElement = <HTMLMediaElement>document.getElementById("video-camera");
+
+    console.log(this.videoElement)
+    console.log(this.videoCameraElement)
+
+    const mediaDevices = navigator.mediaDevices as any;
+    try {
+      this.videoElement.srcObject = await mediaDevices.getDisplayMedia(this.displayMediaOptions);
+      if (this.videoElement) {
+        this.instancia.screen = true;
+        this.videoElement.play();
+      }
+    } catch (error) {
+      console.error("Error: User display screen not found")
+      this.videoElement.srcObject = null;
+      this.instancia.screen = false;
+    }
+
+    try {
+      this.videoCameraElement.srcObject = await mediaDevices.getUserMedia(this.displayMediaOptions);
+      this.videoCameraElement.play();
+      if (this.videoElement) {
+        this.instancia.camera = true;
+        this.videoCameraElement.play();
+      }
+    } catch (error) {
+      console.error("Error: User camera not found")
+      this.videoCameraElement.src = null;
+      this.instancia.camera = false;
+    }
+  }
+
+  parar() {
+    this.instancia.capturando = true;
+
+    if (this.videoElement.srcObject) {
+      //let tracks = this.videoElement.srcObject.getTracks();
+      //tracks.forEach(track => track.stop());
+      this.videoElement.srcObject = null;
+    }
+    if (this.videoCameraElement.srcObject) {
+      //let tracksCamera = this.videoCameraElement.srcObject.getTracks()
+      //tracksCamera.forEach(track => track.stop());
+      this.videoCameraElement.srcObject = null;
+    }
+    this.instancia.screen = false;
+    this.instancia.camera = false;
+  }
+
+  takeSnapshot() {
+    if (this.instancia.activa) {
+      if (this.instancia.screen) {
+        const canvasDataScreen = this.getDataCanvas(this.videoElement);
+        var imgScreen = document.querySelector('img') || document.createElement('img');
+        imgScreen.src = canvasDataScreen;
+        console.log(imgScreen);
+        document.appendChild(imgScreen);
+      }
+      if (this.instancia.camera) {
+        const canvasDataCamera = this.getDataCanvas(this.videoCameraElement);
+      
+        var imgCamera = document.querySelector('img') || document.createElement('img');
+        imgCamera.src = canvasDataCamera;
+        console.log(imgCamera);
+        //document.appendChild(imgCamera);
+      }
+
+    }
+  }
+
+  getDataCanvas(mediaElement) {
+    var context;
+    var width = mediaElement.offsetWidth  , height = mediaElement.offsetHeight;
+
+    let canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+
+    context = canvas.getContext('2d');
+    context.drawImage(mediaElement, 0, 0, width, height);
+    const canvasData = canvas.toDataURL('image/png');
+    return canvasData;
   }
 
 

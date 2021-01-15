@@ -12,16 +12,14 @@ export class PanelNotificacionService {
 
   constructor(private http: HttpClient) { }
 
+  readEmpleados() {
+    return this.http.get(`${baseURL}/empleados`);
+  }
+  
   read(){
-    return this.http.get(`${baseURL}/panels`);
-  }
-  insert(data: PanelNotificacion){
-    return this.http.post(`${baseURL}/panels`, data);
-  }
-  update(data: PanelNotificacion){
-    return this.http.put(`${ baseURL }/panels/${ data.id }`, data);
+    return this.http.get(`${baseURL}/notificacionPersonal`);
   }
   delete(id){
-    return this.http.delete(`${baseURL}/panels/${id}`);
+    return this.http.delete(`${baseURL}/notificacionPersonal/${id}`);
   }
 }

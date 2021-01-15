@@ -11,6 +11,7 @@ export class UsuarioComponent implements OnInit {
   data: Usuario[];
   current: Usuario;
   crudOperation = { isNew: false, isVisible: false, isEditable: true }
+  roles = [];
   constructor (private service: UsuarioService) {
     this.data = [];
   }
@@ -20,6 +21,9 @@ export class UsuarioComponent implements OnInit {
       this.data = res;
       this.current = new Usuario();
     });
+    this.service.readRols().subscribe((res: any[]) => {
+      this.roles = res;
+    })
   }
 
   new() {
