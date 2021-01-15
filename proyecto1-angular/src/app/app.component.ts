@@ -19,7 +19,7 @@ export class AppComponent {
 
   constructor (private cookieService: CookieService , private router: Router, private login: LoginService) {
     this.verificarSesion();
-    this.sesionActiva = true; // delete
+    //this.sesionActiva = false; // delete
   }
 
   logout() {
@@ -42,10 +42,12 @@ export class AppComponent {
   }
 
   onActivate(componentReference) {
-    if(componentReference)
-    componentReference.onLoged.subscribe(() => {
-      this.verificarSesion();
-    })
+    if (componentReference) {
+      componentReference.onLoged.subscribe(() => {
+        this.verificarSesion();
+      })
+    }
+
  }
 
 }

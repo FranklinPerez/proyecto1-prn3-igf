@@ -15,7 +15,9 @@ class EmpleadoController extends Controller
 
     public function index(Request $request)
     {      
-        return Empleado::all();
+        $empleados = Empleado::all();
+        echo $empleados[0];
+        return $empleados;
     }
 
 

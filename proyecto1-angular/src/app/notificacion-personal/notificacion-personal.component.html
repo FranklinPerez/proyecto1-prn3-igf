@@ -5,9 +5,14 @@
     </div>
     <div class="card-body">
         <form ngNativeValidate (ngSubmit)="save()" id="notificacion-personal-form"  class="form-group">
-            <label>Mensaje: </label>
-            <input type="text" name="mensaje" class="form-control" [(ngModel)]="current.mensaje">
-            <br>
+            <label>Enviado por: </label>
+            <select class="form-control" name="rol_id" placeholder="seleccione un rol" [(ngModel)]="current.enviado_id" required [attr.readonly]="!crudOperation.isEditable?true:null">
+                <option *ngFor="let emp of empleados"  [value]="emp.id">{{emp.nombreEmpleado}}</option>
+            </select>     
+            <label>Adjudicado por: </label>
+            <select class="form-control" name="rol_id" placeholder="seleccione un rol" [(ngModel)]="current.adjudicado_id" required [attr.readonly]="!crudOperation.isEditable?true:null">
+                <option *ngFor="let emp of empleados"  [value]="emp.id">{{emp.nombreEmpleado}}</option>
+            </select> 
         </form>
     </div>
     <div class="card-footer">

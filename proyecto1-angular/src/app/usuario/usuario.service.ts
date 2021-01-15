@@ -12,6 +12,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  readRols(){
+    return this.http.get(`${baseURL}/rols`);
+  }
+
   read(){
     return this.http.get(`${baseURL}/usuarios`);
   }

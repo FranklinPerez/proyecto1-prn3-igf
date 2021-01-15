@@ -1,12 +1,11 @@
 <div class="bg-dark border-left collapse" id="noti-sidebar-wrapper">
     <div class="sidebar-heading"><h6 class="text-light">Notificaciones personales</h6></div>
     <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-light"> Dashboard</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/usuarios/">usuarios</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/empleados">Empleados</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/log_empleados">LogEmpleados</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/panels">Panel</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/rols">Roles</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/salas">Salas</a>
+    <div class="list-group"> 
+      <button class="btn btn-sm btn-info" onClick="update()">Recargar</button>
+    </div>
+      <div *ngFor="let notip of misNotis">
+        <a class="list-group-item list-group-item-action bg-light">{{notip}}</a>
+      </div>
     </div>
   </div>
