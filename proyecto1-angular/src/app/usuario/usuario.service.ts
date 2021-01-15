@@ -15,7 +15,11 @@ export class UsuarioService {
   read(){
     return this.http.get(`${baseURL}/usuarios`);
   }
-  
+
+  readRoles(){
+    return this.http.get(`${baseURL}/rols`);
+  }
+
   insert(data: Usuario){
     return this.http.post(`${baseURL}/usuarios`, data);
   }

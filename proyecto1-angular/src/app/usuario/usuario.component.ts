@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './usuario.model';
 import { UsuarioService } from './usuario.service';
+import { RolsClase } from '../rols-componente/rols.model'
 
 @Component({
   selector: 'app-producto',
@@ -10,6 +11,7 @@ import { UsuarioService } from './usuario.service';
 export class UsuarioComponent implements OnInit {
   data: Usuario[];
   current: Usuario;
+  roles: RolsClase[];
   crudOperation = { isNew: false, isVisible: false, isEditable: true }
   constructor (private service: UsuarioService) {
     this.data = [];
@@ -19,6 +21,10 @@ export class UsuarioComponent implements OnInit {
     this.service.read().subscribe((res: any[]) => {
       this.data = res;
       this.current = new Usuario();
+    });
+
+    this.service.readRoles().subscribe((res: any[]) => {
+      this.roles = res;
     });
   }
 

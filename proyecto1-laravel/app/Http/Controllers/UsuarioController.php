@@ -32,6 +32,7 @@ class UsuarioController extends Controller
         return Usuario::create([
             'username' => $request['username'],
             'email' => $request['email'],
+            'rol_id' => $request['rol_id'],
             'password' => Crypt::encryptString($request['password']),
         ]);
     }
