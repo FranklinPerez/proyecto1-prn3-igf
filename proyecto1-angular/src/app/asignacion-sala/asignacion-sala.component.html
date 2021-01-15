@@ -33,26 +33,26 @@
     <div class="card-header">
         <strong>Salas</strong>
         <button class="btn btn-sm btn-success float-right ml-1" (click)="capturar()">Capturar</button>
-        <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo Sala</button>
+        <button class="btn btn-sm btn-success float-right" (click)="new()">Nueva Asignaci&oacute;n Sala</button>
     </div>
 
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
-                <th>C&oacute;digo empleado</th>
-                <th>Nombre Empleado</th>
-                <th>N&uacute;mero de Sala</th>
-                <th>Asunto de Sala</th>
+                <th class="text-center">C&oacute;digo empleado</th>
+                <th class="text-center">Nombre Empleado</th>
+                <th class="text-center">N&uacute;mero de Sala</th>
+                <th class="text-center">Asunto de Sala</th>
 
-                <th class="text-right">Opciones</th>
+                <th class="text-center">Opciones</th>
             </tr>
             <tr *ngFor="let row of asigsala">
-                <td>{{row.codigoEmpleado}}</td>
-                <td>{{row.apellidosEmpleado}}, {{row.nombreEmpleado}}</td>
-                <td>{{row.numeroSala}}</td>
-                <td>{{row.asunto}}</td>
+                <td class="text-center">{{row.codigoEmpleado}}</td>
+                <td class="text-center">{{row.apellidosEmpleado}}, {{row.nombreEmpleado}}</td>
+                <td class="text-center">{{row.numeroSala}}</td>
+                <td class="text-center">{{row.asunto}}</td>
 
-                <td class="text-right">
+                <td class="text-center">
                     <div *ngIf="!row.confirm">
                         <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
                         <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
