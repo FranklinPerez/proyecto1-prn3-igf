@@ -12,9 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('rols')->insert([
-            'nombrerol'  => 'admin',
-
-
+            'nombrerol'  => 'ADMINISTRADOR',
+        ]);
+        DB::table('rols')->insert([
+            'nombrerol'  => 'SUPERVISOR',
+        ]);
+        DB::table('rols')->insert([
+            'nombrerol'  => 'EMPLEADO',
+        ]);
+        DB::table('rols')->insert([
+            'nombrerol'  => 'RRHH',
         ]);
 
         DB::table('usuarios')->insert([

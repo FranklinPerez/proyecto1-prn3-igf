@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    protected $fillable = ['username','email' , 'password','rol_id'];
+    protected $fillable = ['username','email' , 'password', 'rol_id'];
 
     public function setPassword($value)
     {
