@@ -10,9 +10,9 @@ import { EmpleadoService } from './empleado.service';
 })
 export class EmpleadoComponent implements OnInit {
 
-  data: Empleado[];
+  data: any[];
   usuarios:Usuario[];
-  current: Empleado;
+  current: any;
   crudOperation = {isNew: false, isVisible:false, isEditable:true}
   constructor(private service: EmpleadoService) {
     this.data=[];

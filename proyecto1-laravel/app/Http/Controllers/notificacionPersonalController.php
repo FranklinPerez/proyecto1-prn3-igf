@@ -16,6 +16,14 @@ class notificacionPersonalController extends Controller
         return NotificacionPersonal::all();
     }
 
+    public function getByUser($id){
+        $notis = DB::table('notificacion_personals')
+            ->leftJoin('empleados', 'notificacion_personals.adjudicado_id', '=', 'empleados.id')
+            ->where('empleados.usuario_id','=',$id)
+            ->get();
+        return $notis;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

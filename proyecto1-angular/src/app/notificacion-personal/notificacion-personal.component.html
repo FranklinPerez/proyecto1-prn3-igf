@@ -5,6 +5,10 @@
     </div>
     <div class="card-body">
         <form ngNativeValidate (ngSubmit)="save()" id="notificacion-personal-form"  class="form-group">
+            <label>Mensaje: </label>
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" name="mensaje" class="form-control" [(ngModel)]="current.mensaje"
+                [(ngModel)]="current.mensaje" maxlength="200" 
+                placeholder="Escriba aqu&iacute; su mensaje. max 200">
             <label>Enviado por: </label>
             <select class="form-control" name="rol_id" placeholder="seleccione un rol" [(ngModel)]="current.enviado_id" required [attr.readonly]="!crudOperation.isEditable?true:null">
                 <option *ngFor="let emp of empleados"  [value]="emp.id">{{emp.nombreEmpleado}}</option>
@@ -30,10 +34,14 @@
     <div class="card-body">
         <table class="table table-sm table-striped table-over ">
             <tr>
+                <th>ID Emp Enviado por</th>
+                <th>ID Emp Adjudicado a</th>
                 <th>Mensaje</th>
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
+                <td>{{row.adjudicado_id}}</td>
+                <td>{{row.enviado_id}}</td>
                 <td>{{row.mensaje}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">

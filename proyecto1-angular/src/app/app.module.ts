@@ -25,6 +25,7 @@ import { NotificacionPersonalComponent } from './notificacion-personal/notificac
 import { NotificacionPersonalService } from './notificacion-personal/notificacion-personal.service';
 import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.component';
 import { AsignacionSalaService } from './asignacion-sala/asignacion-sala.service';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AsignacionSalaService } from './asignacion-sala/asignacion-sala.service
   ],
 
   providers: [
+    AppService,
     UsuarioService,
     LoginService,
     LogEmpleadoService,

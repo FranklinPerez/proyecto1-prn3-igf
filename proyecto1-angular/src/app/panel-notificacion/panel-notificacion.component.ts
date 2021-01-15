@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { PanelNotificacion } from './panel-notificacion.model';
 import { PanelNotificacionService } from './panel-notificacion.service';
 
@@ -10,23 +11,31 @@ import { PanelNotificacionService } from './panel-notificacion.service';
 export class PanelNotificacionComponent implements OnInit {
   misNotis: PanelNotificacion[];
   current: PanelNotificacion;
+  currentUser: any;
+  idUser = {};
   crudOperation = {isNew: false, isVisible:false}
-  constructor(private service: PanelNotificacionService) {
+  constructor(private service: PanelNotificacionService, private cookieService: CookieService) {
     this.misNotis=[];
    }
 
   ngOnInit() {
-    this.current= new PanelNotificacion();
-    this.service.read().subscribe( (res: any[]) =>{
-      this.misNotis=res;
-    });
+    this.current = new PanelNotificacion();
+    this.idUser = parseInt(this.cookieService.get('usuario_id'));
+
+    if (this.idUser ) {
+      this.service.read(this.idUser).subscribe( (res: any) =>{
+        this.misNotis = res;
+        console.log(res);
+      });
+    }
+
   }
 
   update() {
     this.crudOperation.isVisible = true;
     this.crudOperation.isNew = true;
     this.current = new PanelNotificacion();
-    this.service.read().subscribe((res: any[]) => {
+    this.service.read(this.idUser).subscribe((res: any) => {
       this.misNotis=res;
       console.log(res);
     })

@@ -27,11 +27,12 @@ export class EmpleadoService {
     return this.http.get(`${baseURL}/empleados/${id}`);
   }
 
-  insert(data: Empleado){
+  insert(data) {
+    console.log(data);
     return this.http.post(`${baseURL}/empleados`, data);
   }
 
-  update(data: Empleado){
+  update(data){
     return this.http.put(`${baseURL}/empleados/${data.id}`, data);
   }
 
