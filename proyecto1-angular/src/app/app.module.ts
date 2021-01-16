@@ -3,41 +3,41 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UsuarioComponent } from './usuario/usuario.component';
-import { UsuarioService } from './usuario/usuario.service';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosService } from './usuarios/usuarios.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
-
 import { LogEmpleadoComponent } from './log-empleado/log-empleado.component';
 import { LogEmpleadoService } from './log-empleado/log-empleado.service';
-import { EmpleadoComponent } from './empleado/empleado.component';
-import { EmpleadoService } from './empleado/empleado.service';
-import { PanelComponent } from './panel/panel.component';
-import { PanelService } from './panel/panel.service';
-import { RolsComponenteComponent } from './rols-componente/rols-componente.component';
-import { RolsServicioService } from './rols-componente/rols-servicio.service';
-import { SalaComponent } from './sala/sala.component';
-import { PanelNotificacionComponent } from './panel-notificacion/panel-notificacion.component';
-import { PanelNotificacionService } from './panel-notificacion/panel-notificacion.service';
-import { SalaService } from './sala/sala.service';
+import { EmpleadosComponent } from './empleados/empleados.component';
+import { EmpleadosService } from './empleados/empleados.service';
+import { NotificacionSalasComponent } from './notificacion-salas/notificacion-salas.component';
+import { NotificacionSalasService } from './notificacion-salas/notificacion-salas.service';
+import { RolesComponent } from './roles/roles.component';
+import { RolesService } from './roles/roles.service';
+import { SalasComponent } from './salas/salas.component';
+import { PanelPersonalComponent } from './panel-personal/panel-personal.component';
+import { PanelPersonalService } from './panel-personal/panel-personal.service';
+import { SalasService } from './salas/salas.service';
 import { NotificacionPersonalComponent } from './notificacion-personal/notificacion-personal.component';
 import { NotificacionPersonalService } from './notificacion-personal/notificacion-personal.service';
 import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.component';
 import { AsignacionSalaService } from './asignacion-sala/asignacion-sala.service';
-import { AppService } from './app.service';
+import { ImagenesService } from './salas/imagenes.service';
+import { AuthService } from './login/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsuarioComponent,
+    UsuariosComponent,
     LoginComponent,
     LogEmpleadoComponent,
-    EmpleadoComponent,
-    PanelComponent,
-    PanelNotificacionComponent,
-    RolsComponenteComponent,
-    SalaComponent,
+    EmpleadosComponent,
+    NotificacionSalasComponent,
+    PanelPersonalComponent,
+    RolesComponent,
+    SalasComponent,
     NotificacionPersonalComponent,
     AsignacionSalaComponent,
   ],
@@ -50,17 +50,18 @@ import { AppService } from './app.service';
   ],
 
   providers: [
-    AppService,
-    UsuarioService,
+    UsuariosService,
     LoginService,
+    AuthService,
     LogEmpleadoService,
-    EmpleadoService,
-    PanelService,
-    PanelNotificacionService,
-    RolsServicioService,
-    SalaService,
+    EmpleadosService,
+    NotificacionSalasService,
+    PanelPersonalService,
+    RolesService,
+    SalasService,
     NotificacionPersonalService,
-    AsignacionSalaService
+    AsignacionSalaService,
+    ImagenesService
   ],
   bootstrap: [AppComponent]
 })

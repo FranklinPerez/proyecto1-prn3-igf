@@ -1,0 +1,52 @@
+<div class="card mb-2" *ngIf="crudOperation.isVisible">
+    <div class="card-header">
+        <div class="card-title"> Formulario de Rol</div>
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate (ngSubmit)="save()" id="rols-componente-form" class="form-group"
+            [attr.disable]="crudOperation.isEditable?null:''">
+            <label>Nombre rol: </label>
+            <input type="text" required [attr.readonly]="!crudOperation.isEditable?true:null" name="mensaje" class="form-control" [(ngModel)]="current.nombrerol"
+                maxlength="40" pattern="[A-Za-z]+"
+                placeholder="Solo se admiten letras.">
+            <br>
+        </form>
+    </div>
+    
+    <div class="card-footer">
+        <button class="btn btn-sm btn-primary mr-1" *ngIf="crudOperation.isEditable" 
+            form="rols-componente-form">Guardar</button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelBtn()">Cancelar</button>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <strong>Roles</strong>
+        <button class="btn btn-sm btn-success float-right" *ngIf = "false" (click)="new()">Nuevo rol</button>
+    </div>
+    <div class="card-body">
+        <table class=" table table-sm table-striped table-over ">
+            <tr>
+                <th>Id</th>
+                <th>Nombre rol</th>
+                <th *ngIf = "false"  class="text-right">Opciones</th>
+            </tr>
+            <tr *ngFor="let row of data">
+                <td>{{row.id}}</td>
+                <td>{{row.nombrerol}}</td>
+                <td class="text-right" *ngIf = "false">
+                    <div *ngIf="!row.confirm">
+                        <button class="btn btn-sm btn-warning mr-1"  (click)="edit(row)">Editar</button>
+                        <button class="btn btn-sm btn-danger"   (click)="row.confirm=true">Eliminar</button>
+                    </div>
+                    <div *ngIf="row.confirm">
+                        <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
+                        <button class="btn btn-sm btn-danger" (click)="row.confirm=false">Cancelar</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

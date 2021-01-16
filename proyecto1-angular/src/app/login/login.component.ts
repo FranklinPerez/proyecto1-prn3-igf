@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoginService } from './login.service';
-import { Usuario } from '../usuario/usuario.model';
+import { Usuario } from '../compartido/models/usuario.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -37,12 +37,9 @@ export class LoginComponent implements OnInit {
     if (this.formGroup.valid) {
       this.LoginService.buscarUsuario(this.formGroup.value).subscribe(res => {
         if (res.resultado == "Inicio de sesion exitoso") {
-          this.cookieService.set('tipo-usuario', 'administrador');
           this.cookieService.set('estado-sesion', 'activada');
-          this.CookieValue = this.cookieService.get('tipo-usuario');
           this.CookieValue = this.cookieService.get('estado-sesion');
           this.cookieService.set('usuario_id', res[0].id);
-          this.cookieService.set('username', res[0].username);
           this.onLoged.emit();
           this.router.navigateByUrl('/usuarios');
         } else {
@@ -57,7 +54,7 @@ export class LoginComponent implements OnInit {
   verificarSesion() {
     this.CookieValue = this.cookieService.get('estado-sesion');
     if (this.CookieValue == "activada") {
-      alert("ya hay una sesion abierta");
+      alert("Ya hay una sesion abierta");
       this.router.navigateByUrl('/');
     }
 

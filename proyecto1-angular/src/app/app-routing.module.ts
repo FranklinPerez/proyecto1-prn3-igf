@@ -1,32 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 import { LogEmpleadoComponent } from './log-empleado/log-empleado.component';
 import { LoginComponent } from './login/login.component';
-import { EmpleadoComponent } from './empleado/empleado.component';
-import { PanelComponent } from './panel/panel.component';
-import { RolsComponenteComponent } from './rols-componente/rols-componente.component';
-import { SalaComponent } from './sala/sala.component';
+import { EmpleadosComponent } from './empleados/empleados.component';
+import { NotificacionSalasComponent } from './notificacion-salas/notificacion-salas.component';
+import { RolesComponent } from './roles/roles.component';
+import { SalasComponent } from './salas/salas.component';
 import { NotificacionPersonalComponent } from './notificacion-personal/notificacion-personal.component';
-import { PanelNotificacionComponent } from './panel-notificacion/panel-notificacion.component';
+import { PanelPersonalComponent } from './panel-personal/panel-personal.component';
 import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.component';
 
 const routes: Routes = [
-    { path: 'usuarios', component: UsuarioComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'log_empleados', component: LogEmpleadoComponent },
-    { path: 'empleados', component: EmpleadoComponent },
-    { path: 'panels', component: PanelComponent },
-    { path: 'noti-panels', component: PanelNotificacionComponent },
-    { path: 'rols', component: RolsComponenteComponent },
-    { path: 'salas', component: SalaComponent },
-    { path: 'noti-personales', component: NotificacionPersonalComponent },
-
     { path: 'logout', component: LoginComponent },
-
+    { path: 'roles', component: RolesComponent },
+    { path: 'salas', component: SalasComponent },
+    { path: 'usuarios', component: UsuariosComponent },
+    { path: 'empleados', component: EmpleadosComponent },
+    { path: 'log_empleados', component: LogEmpleadoComponent },
+    { path: 'noti-salas', component: NotificacionSalasComponent },
+    { path: 'panel-personal', component: PanelPersonalComponent },
     { path: 'asignacionsalas', component: AsignacionSalaComponent },
-
-
+    { path: 'noti-personales', component: NotificacionPersonalComponent },
 ];
 
 @NgModule({

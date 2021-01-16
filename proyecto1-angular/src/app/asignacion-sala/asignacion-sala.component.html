@@ -33,7 +33,7 @@
     <div class="card-header">
         <strong>Salas</strong>
         <button class="btn btn-sm btn-success float-right ml-1" (click)="capturar()">Capturar</button>
-        <button class="btn btn-sm btn-success float-right" (click)="new()">Nueva Asignaci&oacute;n Sala</button>
+        <button class="btn btn-sm btn-success float-right" *ngIf="permisos.any.canCreate" (click)="new()">Nueva Asignaci&oacute;n Sala</button>
     </div>
 
     <div class="card-body">
@@ -54,8 +54,8 @@
 
                 <td class="text-center">
                     <div *ngIf="!row.confirm">
-                        <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
-                        <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
+                        <button class="btn btn-sm btn-warning mr-1"  *ngIf="permisos.any.canEdit" (click)="edit(row)">Editar</button>
+                        <button class="btn btn-sm btn-danger" *ngIf="permisos.any.canDelete" (click)="row.confirm=true">Eliminar</button>
                     </div>
                     <div *ngIf="row.confirm">
                         <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>

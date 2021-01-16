@@ -16,9 +16,9 @@ class CreateEmpleadosTable extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('codigoEmpleado');#no lo veo necesario porque se tiene el id, a menos que se considere que estará formado por una parte del área al que pertenece y su id
-            $table->string('nombreEmpleado');
-            $table->string('apellidosEmpleado');
+            $table->string('codigo');#no lo veo necesario porque se tiene el id, a menos que se considere que estará formado por una parte del área al que pertenece y su id
+            $table->string('nombre');
+            $table->string('apellidos');
             $table->string('dui');
             $table->timestamps();
             $table->unsignedBigInteger('usuario_id');

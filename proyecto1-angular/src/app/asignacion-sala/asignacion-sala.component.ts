@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AsignacionSala } from './asignacion-sala';
 import { AsignacionSalaService } from './asignacion-sala.service';
-import { Sala} from '../sala/sala.model';
-import { Empleado } from '../empleado/empleado.model';
+import { Sala} from '../salas/sala.model';
+import { Empleado } from '../empleados/empleado.model';
+import { Usuario } from '../compartido/models/usuario.model';
+import { PermisosRecurso, Recursos } from '../compartido/roles.config';
+import { AuthService } from '../login/auth.service';
+import { getPermisosRecurso } from '../compartido/validar-permiso';
 
 @Component({
   selector: 'app-asignacion-sala',
@@ -10,13 +14,19 @@ import { Empleado } from '../empleado/empleado.model';
   styleUrls: ['./asignacion-sala.component.css']
 })
 export class AsignacionSalaComponent implements OnInit {
-  empleados: Empleado[];
-  salas: Sala[];
-  asigsala = [];
-  data: AsignacionSala[];
-  current: AsignacionSala;
-  crudOperation = { isNew: false, isVisible: false, isEditable: true}
-  constructor (private service: AsignacionSalaService) {
+  public crudOperation = { isNew: false, isVisible: false, isEditable: true }
+  public permisos: PermisosRecurso = new PermisosRecurso();
+  public currentUser: Usuario;
+
+  public data: AsignacionSala[];
+  public current: AsignacionSala;
+  public empleados: Empleado[];
+  public salas: Sala[];
+  public asigsala = [];
+
+  constructor (
+    private service: AsignacionSalaService,
+    private authService: AuthService) {
     this.data = [];
   }
 
@@ -33,6 +43,11 @@ export class AsignacionSalaComponent implements OnInit {
     this.service.readEmpleados().subscribe((res: any[]) => {
       this.empleados = res;
 
+    });
+
+    this.authService.getUsuarioActual().subscribe((res: Usuario) => {
+      this.currentUser = res;
+      this.permisos = getPermisosRecurso(this.currentUser.nombrerol, Recursos.ASIGNACION_SALA);
     });
   }
 

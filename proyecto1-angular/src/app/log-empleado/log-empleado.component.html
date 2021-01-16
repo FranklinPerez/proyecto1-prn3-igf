@@ -20,19 +20,27 @@
 <div class="card">
     <div class="card-header">
         <strong>Logs de empleados</strong>
-        <button class="btn btn-sm btn-success float-right" (click)="new()">Nuevo LogEmpleado</button>
+        <button class="btn btn-sm btn-success float-right" *ngIf="permisos.any.canCreate" (click)="new()">Nuevo LogEmpleado</button>
     </div>
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
+                <th>Id</th>
                 <th>Ubicacion</th>
+                <th>Id Emp</th>
+                <th>Id Asig</th>
+                <th>Acci&oacute;n</th>
                 <th class="text-right">Opciones</th>
             </tr>
             <tr *ngFor="let row of data">
+                <td>{{row.id}}</td>
                 <td>{{row.ubicacionlog}}</td>
-                <td class="text-right">
+                <td>{{row.empleado_id}}</td>
+                <td>{{row.asignacions_id}}</td>
+                <td>{{row.accion}}</td>
+                <td class="text-right" *ngIf = "false">
                     <div *ngIf="!row.confirm">
-                        <button class="btn btn-sm btn-warning mr-1" (click)="edit(row)">Editar</button>
+                        <button class="btn btn-sm btn-warning mr-1"  (click)="edit(row)">Editar</button>
                         <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
                     </div>
                     <div *ngIf="row.confirm">

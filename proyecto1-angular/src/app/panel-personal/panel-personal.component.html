@@ -1,0 +1,16 @@
+<div class="bg-dark border-left collapse" id="noti-sidebar-wrapper">
+    <div class="sidebar-heading"><h6 class="text-light">Notificaciones personales</h6></div>
+    <div class="list-group list-group-flush">
+    <div class="list-group"> 
+      <button class="btn btn-sm btn-info" (click)="update()">Recargar</button>
+    </div>
+      <div *ngFor="let notip of misNotis">
+        <div class="list-group-item list-group-item-action bg-light">
+          <h6>{{notip.id}} - {{notip.mensaje}}</h6>
+          <p>
+            <strong>ID Emp remitente:</strong> {{notip.enviado_id}} 
+            <strong>ID Emp receptor:</strong> {{notip.adjudicado_id}}</p>
+        </div>
+      </div>
+    </div>
+  </div>

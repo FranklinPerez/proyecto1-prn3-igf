@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\imagen;
-class imagenController extends Controller
+use App\Imagen;
+
+class ImagenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class imagenController extends Controller
      */
     public function index()
     {
-        return imagen::all();
+        return Imagen::all();
     }
 
     /**
@@ -31,7 +32,18 @@ class imagenController extends Controller
      */
     public function store(Request $request)
     {
-        return imagen::create($request->all());
+        error_log("en el controller");
+        $image = $request['image'];  // your base64 encoded
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = time().'.'.'png';
+        \File::put(public_path(). '/imagenes/' . $imageName, base64_decode($image));
+        return Imagen::create([
+            'image' => $imageName, 
+            'tipo' => true,
+            'ruta' => "public/imagenes", 
+            'log_empleado_id' => $request['log_empleado_id'],
+        ]);
     }
 
     /**
@@ -40,9 +52,9 @@ class imagenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(imagen $imagen)
+    public function show(Imagen $imagen)
     {
-        return imagen::find($imagen->id);
+        return Imagen::find($imagen->id);
     }
 
     /**
@@ -60,7 +72,7 @@ class imagenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, imagen $imagen)
+    public function update(Request $request, Imagen $imagen)
     {
         $imagen->update($request->all());
     }
@@ -71,7 +83,7 @@ class imagenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(imagen $imagen)
+    public function destroy(Imagen $imagen)
     {
         $imagen->destroy($imagen->id);
     }

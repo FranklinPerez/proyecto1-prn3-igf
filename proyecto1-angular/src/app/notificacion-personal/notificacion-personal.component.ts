@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../compartido/models/usuario.model';
+import { PermisosRecurso, Recursos } from '../compartido/roles.config';
+import { getPermisosRecurso } from '../compartido/validar-permiso';
+import { AuthService } from '../login/auth.service';
 import { NotificacionPersonal } from './notificacion-personal.model';
 import { NotificacionPersonalService } from './notificacion-personal.service';
 
@@ -8,11 +12,17 @@ import { NotificacionPersonalService } from './notificacion-personal.service';
   styleUrls: ['./notificacion-personal.component.css']
 })
 export class NotificacionPersonalComponent implements OnInit {
+  public crudOperation = { isNew: false, isVisible: false, isEditable: true }
+  public permisos: PermisosRecurso = new PermisosRecurso();
+  public currentUser: Usuario;
+
   data: NotificacionPersonal[];
   current: NotificacionPersonal;
-  crudOperation = { isNew: false, isVisible: false, isEditable: true }
   empleados = [];
-  constructor(private service: NotificacionPersonalService) {
+
+  constructor (
+    private service: NotificacionPersonalService,
+    private authService: AuthService) {
     this.data=[];
    }
 
@@ -24,6 +34,10 @@ export class NotificacionPersonalComponent implements OnInit {
     this.service.readEmpleados().subscribe((res: any[]) => {
       this.empleados = res;
     })
+    this.authService.getUsuarioActual().subscribe((res:Usuario) => {
+      this.currentUser = res;
+      this.permisos = getPermisosRecurso(this.currentUser.nombrerol, Recursos.NOTIFICACION_PERSONAL);
+    })
   }
 
   new(){
@@ -34,7 +48,6 @@ export class NotificacionPersonalComponent implements OnInit {
 
   save(){
     if (this.crudOperation.isNew) {
-      console.log(this.current)
       this.service.insert(this.current).subscribe(res=>{
         this.current = new NotificacionPersonal();
         this.crudOperation.isVisible = false;

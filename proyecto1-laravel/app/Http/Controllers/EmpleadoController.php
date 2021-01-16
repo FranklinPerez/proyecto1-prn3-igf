@@ -15,7 +15,8 @@ class EmpleadoController extends Controller
 
     public function index(Request $request)
     {      
-        return Empleado::all();
+        return Empleado::orderBy('empleados.id','ASC')
+                ->get();
     }
 
 

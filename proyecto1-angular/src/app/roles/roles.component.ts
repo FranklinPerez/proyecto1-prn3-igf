@@ -3,41 +3,46 @@ import { Usuario } from '../compartido/models/usuario.model';
 import { PermisosRecurso, Recursos } from '../compartido/roles.config';
 import { getPermisosRecurso } from '../compartido/validar-permiso';
 import { AuthService } from '../login/auth.service';
-import { LogEmpleado } from './log-empleado.model';
-import { LogEmpleadoService } from './log-empleado.service';
+import { Rol} from './rol.model';
+import { RolesService } from './roles.service';
+
+
 
 @Component({
-  selector: 'app-log-empleado',
-  templateUrl: './log-empleado.component.html',
-  styleUrls: ['./log-empleado.component.css']
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css']
 })
-export class LogEmpleadoComponent implements OnInit {
+export class RolesComponent implements OnInit {
   public crudOperation = { isNew: false, isVisible: false, isEditable: true }
   public permisos: PermisosRecurso = new PermisosRecurso();
   public currentUser: Usuario;
 
-  public data: LogEmpleado[];
-  public current: LogEmpleado;
+  public data: Rol[];
+  public current: Rol;
 
   constructor (
-    private service: LogEmpleadoService,
+    private service: RolesService,
     private authService: AuthService) {
     this.data=[];
    }
 
   ngOnInit() {
+
     this.service.read().subscribe( (res: any[]) =>{
       this.data=res;
-      this.current= new LogEmpleado();
+      this.current= new Rol();
     });
+
     this.authService.getUsuarioActual().subscribe((res: Usuario) => {
       this.currentUser = res;
-      this.permisos = getPermisosRecurso(this.currentUser.nombrerol, Recursos.LOG_EMPLEADO);
+      this.permisos = getPermisosRecurso(this.currentUser.nombrerol, Recursos.ROL);
     });
+
   }
 
   new(){
-    this.current = new LogEmpleado();
+    this.current = new Rol();
     this.crudOperation.isVisible = true;
     this.crudOperation.isNew = true;
   }
@@ -45,14 +50,14 @@ export class LogEmpleadoComponent implements OnInit {
   save(){
     if(this.crudOperation.isNew){
       this.service.insert(this.current).subscribe(res=>{
-        this.current = new LogEmpleado();
+        this.current = new Rol();
         this.crudOperation.isVisible = false;
         this.ngOnInit();
       });
       return;
     }
     this.service.update(this.current).subscribe(res=>{
-      this.current = new LogEmpleado();
+      this.current = new Rol();
       this.crudOperation.isVisible = false;
       this.ngOnInit();
     });
@@ -63,6 +68,12 @@ export class LogEmpleadoComponent implements OnInit {
     this.crudOperation.isNew = false;
     this.current = row;
   }
+  show(row){
+    this.crudOperation.isVisible = true;
+    this.crudOperation.isNew = false;
+    this.crudOperation.isEditable = false;
+    this.current = row;
+  }
 
   delete(id){
     this.service.delete(id).subscribe(res=>{
@@ -70,4 +81,11 @@ export class LogEmpleadoComponent implements OnInit {
       this.ngOnInit();
     });
   }
+  onCancelBtn()
+  {
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable=true;
+  }
+
+
 }

@@ -7,20 +7,20 @@
     </div>
     <div class="list-group list-group-flush">
       <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-home mr-1"></i>Home</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/usuarios/"><i
-          class="fa fa-users mr-1"></i>usuarios</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/rols"><i
-          class="fa fa-users mr-1"></i>Roles</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/empleados"><i
-          class="fa fa-users  mr-1"></i>Empleados</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/log_empleados"><i
-          class="fa fa-list  mr-1"></i>LogEmpleados</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/noti-personales"><i
-          class="fa fa-comments mr-1"></i>Panel Notificaci&oacute;n</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/salas"><i
-          class="fa fa-tv mr-1"></i>Salas</a>
-      <a class="list-group-item list-group-item-action bg-light" routerLink="/asignacionsalas"><i
-          class="fa fa-tv mr-1"></i>Asignacion Salas</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/usuarios"
+        *ngIf="usuarioPermisos.any.canRead"><i class="fa fa-users mr-1"></i>Usuarios</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/roles" 
+      *ngIf="rolPermisos.any.canRead"><i class="fa fa-users mr-1"></i>Roles</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/empleados"
+        *ngIf="empleadoPermisos.any.canRead"><i class="fa fa-users  mr-1"></i>Empleados</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/log_empleados"
+        *ngIf="logPermisos.any.canRead"><i class="fa fa-list  mr-1"></i>Log Empleados</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/noti-personales"
+        *ngIf="notiPersPermisos.any.canRead"><i class="fa fa-comments mr-1"></i>Notificaciones Personales</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/salas" 
+      *ngIf="salaPermisos.any.canRead"><i class="fa fa-tv mr-1"></i>Salas</a>
+      <a class="list-group-item list-group-item-action bg-light" routerLink="/asignacionsalas"
+        *ngIf="asignPermisos.any.canRead"> <i class="fa fa-tv mr-1"></i>Asignacion Salas</a>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -35,7 +35,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <h6 *ngIf= "sesionActiva">Usuario: {{current_usuario.username}}</h6>
+        <h6 *ngIf="haySesion()">Usuario: {{currentUser.username}}</h6>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -54,16 +54,15 @@
       </div>
     </nav>
     <div class="container-fluid pt-4">
-      <h2>Sistema de monitoreo en tiempo real de empleados</h2>
+      <h3>Sistema de monitoreo en tiempo real de empleados</h3>
       <router-outlet (activate)="onActivate($event)"> </router-outlet>
     </div>
   </div>
   <!-- /#page-content-wrapper -->
 
   <!-- Sidebar Notificaciones personales-->
-  <app-panel-notificacion *ngIf="sesionActiva"></app-panel-notificacion>
+  <app-panel-personal *ngIf="sesionActiva"></app-panel-personal>
   <!-- /#sidebar-wrapper -->
-
 
 </div>
 <!-- /#wrapper -->

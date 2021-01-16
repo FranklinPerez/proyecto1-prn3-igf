@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use App\Usuario;
 
 class UsuarioController extends Controller
@@ -15,7 +16,11 @@ class UsuarioController extends Controller
 
     public function index(Request $request)
     {
-        return Usuario::all();
+        return  Usuario::join('rols','usuarios.rol_id','=','rols.id')
+                ->select('usuarios.id','usuarios.username','usuarios.email','usuarios.rol_id','usuarios.password','rols.nombrerol')
+                ->orderBy('usuarios.id','ASC')
+                ->get();
+
     }
 
     /**
@@ -36,7 +41,6 @@ class UsuarioController extends Controller
         ]);
     }
 
-
     /**
      * Display the specified resource.
      *
@@ -45,10 +49,10 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        return Usuario::find($usuario->id);
+        return  Usuario::join('rols','usuarios.rol_id','=','rols.id')
+                ->where('usuarios.id','=',$usuario->id)
+                ->first();
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -64,7 +68,6 @@ class UsuarioController extends Controller
         $usuario->update($request->all());
         return $usuario;
     }
-
 
     /**
      * Remove the specified resource from storage.

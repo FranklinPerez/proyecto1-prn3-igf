@@ -17,11 +17,10 @@ class notificacionPersonalController extends Controller
     }
 
     public function getByUser($id){
-        $notis = DB::table('notificacion_personals')
-            ->leftJoin('empleados', 'notificacion_personals.adjudicado_id', '=', 'empleados.id')
-            ->where('empleados.usuario_id','=',$id)
+        return  NotificacionPersonal::join('empleados','notificacion_personals.adjudicado_id','=','empleados.id')
+            ->where('empleados.usuario_id','=',$id)    
+            ->orderBy('notificacion_personals.id','ASC')
             ->get();
-        return $notis;
     }
 
     /**
