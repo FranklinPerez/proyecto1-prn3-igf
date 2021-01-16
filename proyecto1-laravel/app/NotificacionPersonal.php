@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotificacionPersonal extends Model
 {
+    protected $fillable = [
+        'adjudicado_id',
+        'enviado_id',
+        'mensaje',
+    ];
+
     public function sesion(){
         return $this->hasOne('App\LOGEmpleado');
     }

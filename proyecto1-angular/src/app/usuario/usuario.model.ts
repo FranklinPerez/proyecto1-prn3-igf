@@ -4,6 +4,5 @@ export class Usuario {
     email:string;
     password: string;
     rol_id: number;
-
     constructor(){ }
 }

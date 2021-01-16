@@ -11,7 +11,7 @@ export class NotificacionPersonalComponent implements OnInit {
   data: NotificacionPersonal[];
   current: NotificacionPersonal;
   crudOperation = { isNew: false, isVisible: false, isEditable: true }
-  empleados = []
+  empleados = [];
   constructor(private service: NotificacionPersonalService) {
     this.data=[];
    }

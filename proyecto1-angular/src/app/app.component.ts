@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import {LoginService} from './login/login.service';
 import { Usuario } from './usuario/usuario.model';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,9 @@ export class AppComponent {
   current_usuario: Usuario;
   sesionActiva: boolean;
   title = 'SIMTRE';
-   id: number = 0;
+  id: number = 0;
 
-  constructor (private cookieService: CookieService , private router: Router, private login: LoginService) {
+  constructor (private cookieService: CookieService , private router: Router, private login: LoginService, private appService: AppService ) {
     this.verificarSesion();
     //this.sesionActiva = false; // delete
   }
@@ -38,7 +39,14 @@ export class AppComponent {
     this.sesionActiva = this.cookieService.get('estado-sesion') === 'activada';
     if (!this.sesionActiva) {
       this.router.navigateByUrl('/login');
+      this.current_usuario = null;
+    } else {
+      this.id = parseInt(this.cookieService.get('usuario_id'));
+      this.appService.readUsuario(this.id).subscribe((res:Usuario) => {
+        this.current_usuario = res;
+      });
     }
+
   }
 
   onActivate(componentReference) {

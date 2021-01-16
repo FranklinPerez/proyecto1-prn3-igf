@@ -14,10 +14,12 @@ class EmpleadoController extends Controller
      */
 
     public function index(Request $request)
+
     {
         $empleados = Empleado::all();
         return $empleados;
     }
+
 
 
 

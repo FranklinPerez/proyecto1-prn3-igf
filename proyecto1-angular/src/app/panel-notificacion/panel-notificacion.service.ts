@@ -16,8 +16,12 @@ export class PanelNotificacionService {
     return this.http.get(`${baseURL}/empleados`);
   }
   
-  read(){
-    return this.http.get(`${baseURL}/notificacionPersonal`);
+  readUsuario(id) {
+    return this.http.get(`${baseURL}/usuarios/${id}`);
+  }
+
+  read(id){
+    return this.http.get(`${baseURL}/mynotis/${id}`,);
   }
   delete(id){
     return this.http.delete(`${baseURL}/notificacionPersonal/${id}`);

@@ -18,8 +18,6 @@ class UsuarioController extends Controller
         return Usuario::all();
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -34,6 +32,7 @@ class UsuarioController extends Controller
             'email' => $request['email'],
             'rol_id' => $request['rol_id'],
             'password' => Crypt::encryptString($request['password']),
+            'rol_id' => $request['rol_id'],
         ]);
     }
 
