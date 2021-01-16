@@ -20,7 +20,8 @@ class EmpleadoController extends Controller
     }
 
 
- 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,7 +45,7 @@ class EmpleadoController extends Controller
         return Empleado::find($empleado->id);
     }
 
-   
+
 
     /**
      * Update the specified resource in storage.
@@ -56,10 +57,10 @@ class EmpleadoController extends Controller
     public function update(Request $request, Empleado $empleado )
     {
         $empleado->update($request->all());
-        return $empleado;        
+        return $empleado;
     }
 
-    
+
     /**
      * Remove the specified resource from storage.
      *

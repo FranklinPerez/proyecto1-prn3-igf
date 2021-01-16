@@ -21,6 +21,10 @@
             <input type="password" required [attr.readonly]="!crudOperation.isEditable?true:null" name="password" class="form-control"
             [(ngModel)]="current.password" minlength="4" maxlength="100" placeholder="Debe contener de 4 a 100 carateres">
 
+            <label>Digite de nuevoContraseña: </label>
+            <input type="password" required [attr.readonly]="!crudOperation.isEditable?true:null" name="passwordRepeated" class="form-control"
+            [(ngModel)]="current.passwordRepeated" minlength="4" maxlength="100" placeholder="Debe contener de 4 a 100 carateres">
+
             <!--<label>Repita la Contrasenia: </label>
             <input type="password" class="form-control" [(ngModel)]="current_usuario.repeat_password">-->
 

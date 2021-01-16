@@ -53,11 +53,23 @@ export class UsuariosComponent implements OnInit {
 
   save() {
     if (this.crudOperation.isNew) {
-      this.service.insert(this.current).subscribe(res => {
+
+      if (!this.current.username) {
+        alert('usuario vacio');
+        return;
+      }
+      if(this.current.password == this.current.passwordRepeated){
+        this.service.insert(this.current).subscribe(res => {
         this.current = new Usuario();
         this.crudOperation.isVisible = false;
         this.ngOnInit();
-      });
+        });
+      }
+      else{
+        alert('La contraseña no coincide');
+        this.current.password = "";
+        this.current.passwordRepeated = "";
+      }
       return;
     } else {
       console.log('aqui esta el error');

@@ -30,5 +30,13 @@ class DatabaseSeeder extends Seeder
             'password'  => Crypt::encryptString('admin'),
             'rol_id' => 1,
         ]);
+
+        DB::table('empleados')->insert([
+            'codigoEmpleado'=> '001',
+            'nombreEmpleado'  => 'Franklin',
+            'apellidosEmpleado'     => 'Perez',
+            'dui'  => '12345678-0',
+            'usuario_id' => 1,
+        ]);
     }
 }
