@@ -15,7 +15,6 @@ export class ImagenesService {
   }
 
   insert(data) {
-    alert(`url: ${baseURL}/imagen`);
     return this.http.post(`${baseURL}/imagen`, { ...data });
   }
 

@@ -4,7 +4,6 @@ import { Usuario } from '../compartido/models/usuario.model';
 import { PermisosRecurso, Recursos } from '../compartido/roles.config';
 import { getPermisosRecurso } from '../compartido/validar-permiso';
 import { AuthService } from '../login/auth.service';
-import { UsuariosService } from '../usuarios/usuarios.service';
 import { ImagenDetalle } from './imagen.model';
 import { ImagenesService } from './imagenes.service';
 import { Sala } from './sala.model';
@@ -106,6 +105,11 @@ export class SalasComponent implements OnInit {
     });
   }
 
+  onCancelBtn() {
+    this.crudOperation.isVisible = false;
+    this.crudOperation.isEditable = true;
+  }
+
   entrarSala(row) {
     this.instancia.activa = true;
     this.current = row;
@@ -114,12 +118,6 @@ export class SalasComponent implements OnInit {
 
   salirSala() {
     this.instancia.activa = false;
-
-  }
-
-  onCancelBtn() {
-    this.crudOperation.isVisible = false;
-    this.crudOperation.isEditable = true;
   }
 
   async capturar(row) {
@@ -157,17 +155,13 @@ export class SalasComponent implements OnInit {
   }
 
   parar() {
-    this.instancia.capturando = false;
-
     if (this.videoElement.srcObject) {
       this.videoElement.srcObject = null;
     }
-    
     if (this.videoCameraElement.srcObject) {
-      //let tracksCamera = this.videoCameraElement.srcObject.getTracks()
-      //tracksCamera.forEach(track => track.stop());
       this.videoCameraElement.srcObject = null;
     }
+    this.instancia.capturando = false;
     this.instancia.screen = false;
     this.instancia.camera = false;
   }
@@ -183,7 +177,9 @@ export class SalasComponent implements OnInit {
         imagenDetalle.log_empleado_id = 1;
         imagenDetalle.tipo = true;
 
-        this.imagenService.insert(imagenDetalle);
+        this.imagenService.insert(imagenDetalle).subscribe((res) => {
+          console.log(res);
+        })
       }
 
       if (this.instancia.camera) {
@@ -194,8 +190,9 @@ export class SalasComponent implements OnInit {
         imagenDetalle.log_empleado_id = 1;
         imagenDetalle.tipo = true;
 
-        this.imagenService.insert(imagenDetalle);
-
+        this.imagenService.insert(imagenDetalle).subscribe((res) => {
+          console.log(res);
+        })
         //var imgCamera = document.querySelector('img') || document.createElement('img');
         //imgCamera.src = canvasDataCamera;
         //console.log(imgCamera);
@@ -203,6 +200,10 @@ export class SalasComponent implements OnInit {
       }
 
     }
+  }
+
+  sendScreen() {
+    alert('holi');
   }
 
 }

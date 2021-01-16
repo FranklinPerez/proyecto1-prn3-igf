@@ -18,6 +18,7 @@
 /proyecto1-laravel/npm-debug.log
 /proyecto1-laravel/yarn-error.log
 /proyecto1-laravel/.env
+/proyecto1-laravel/public/imagenes/*.png
 
 # IDEs and editors
 /.idea

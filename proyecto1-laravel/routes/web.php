@@ -30,5 +30,7 @@ Route::resource('detalle', 'detalleReporteController');
 Route::resource('asignacion', 'AsignacionController');
 Route::get('logouts/{id}', 'LoginController@cerrarSesion');
 Route::get('mynotis/{id}', 'notificacionPersonalController@getByUser');
+Route::get('imagen/save', 'ImagenController@store');
+
 
 

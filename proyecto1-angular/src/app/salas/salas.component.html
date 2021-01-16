@@ -79,12 +79,12 @@
         <button type = "button" class="btn btn-sm btn-success float-right ml-1" *ngIf="!instancia.capturando"
             (click)="capturar(row)">Capturar</button>
         <button type = "button" class="btn btn-sm btn-warning float-right ml-1" *ngIf="instancia.capturando"
-            (click)="Parar()">Parar</button>
+            (click)="parar()">Parar</button>
         <button type = "button"  class="btn btn-sm btn-danger float-right" (click)="salirSala()">Salir</button>
     </div>
     <div class="card-body">
         <div class="row">
-            <h5 >Asunto: {{current.asunto}} </h5>
+            <h5 *ngIf = "current">Asunto: {{current.asunto}} </h5>
         </div>
         <div class="row">
             <div class="col-12">
@@ -111,6 +111,6 @@
 </style>
 
 <h6  class="mt-4" >Compartiendo Pantalla</h6>
-<video  id="video" title="pantalla" autoplay></video>
+<video onSeeked="sendScreen()" id="video" title="pantalla" autoplay></video>
 <h6  class="mt-4">Compartiendo webcam</h6>
 <video id="video-camera" title="webcam" autoplay></video>

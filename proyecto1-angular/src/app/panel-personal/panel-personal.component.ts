@@ -26,15 +26,13 @@ export class PanelPersonalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.current = new NotificacionPersonal();
-    
+    this.current = new NotificacionPersonal();  
     this.authService.getUsuarioActual().subscribe((res:Usuario) => {
       this.currentUser = res;
       this.permisos = getPermisosRecurso(this.currentUser.nombrerol, Recursos.PANEL_PERSONAL);
       if (this.currentUser) {
         this.service.read(this.currentUser.id).subscribe((res: any) => {
           this.misNotis = res;
-          console.log(res);
         });
       }
     })
@@ -46,7 +44,6 @@ export class PanelPersonalComponent implements OnInit {
     this.current = new NotificacionPersonal();
     this.service.read(this.currentUser.id).subscribe((res: any) => {
       this.misNotis = res;
-      console.log(res);
     })
   }
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from 'src/environments/environment';
 import { Sala } from './sala.model';
-import { ImagenDetalle } from './imagen.model';
 
 
 @Injectable({
@@ -46,4 +45,5 @@ export class SalasService {
     const canvasData = canvas.toDataURL('image/png');
     return canvasData;
   }
+
 }

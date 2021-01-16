@@ -20,8 +20,6 @@ class EmpleadoController extends Controller
     }
 
 
-
-
     /**
      * Store a newly created resource in storage.
      *
