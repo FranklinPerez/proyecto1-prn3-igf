@@ -18,6 +18,7 @@ export class LogEmpleadoComponent implements OnInit {
 
   public data: LogEmpleado[];
   public current: LogEmpleado;
+  public currentImagen;
 
   constructor (
     private service: LogEmpleadoService,
@@ -67,6 +68,7 @@ export class LogEmpleadoComponent implements OnInit {
   verImagen(row){
     this.service.readImagen(row.id).subscribe((res) => {
       console.log(res);
+      this.currentImagen = res;
     })
   }
 

@@ -30,12 +30,9 @@ class LogEmpleadoController extends Controller
             ->first();
         if($imagen){
             $fileName = 'public/imagenes/'.$imagen->image;
-            error_log($fileName);
-            if(Storage::disk('public')->exists($fileName)) {
-                $file = Storage::disk('public')->path($fileName);
-                return response($file, 200)
-                ->header('Content-Type', 'image/png');
-            }
+            $images = \File::get(public_path('imagenes/'.$imagen->image));
+            return response($images, 200)
+                    ->header('Content-Type', 'image/png');
         }
         return null;
     }
