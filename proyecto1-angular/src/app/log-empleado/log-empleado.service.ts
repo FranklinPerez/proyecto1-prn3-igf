@@ -17,7 +17,8 @@ export class LogEmpleadoService {
   }
 
   readImagen(id: number) {
-    return this.http.get(`${baseURL}/log_empleados/${id}/imagen`);
+    window.open(`${baseURL}/log_empleados/${id}/imagen`, "_blank");
+    //return this.http.get(`${baseURL}/log_empleados/${id}/imagen`);
   }
 
   insert(data: LogEmpleado) {

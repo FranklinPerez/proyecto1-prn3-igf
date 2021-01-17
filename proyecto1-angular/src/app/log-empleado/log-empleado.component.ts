@@ -66,10 +66,7 @@ export class LogEmpleadoComponent implements OnInit {
   }
 
   verImagen(row){
-    this.service.readImagen(row.id).subscribe((res) => {
-      console.log(res);
-      this.currentImagen = res;
-    })
+    this.service.readImagen(row.id);
   }
 
   delete(id){

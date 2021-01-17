@@ -38,8 +38,7 @@
                 <td>{{row.accion}}</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
-                        <button class="btn btn-sm btn-warning mr-1"  (click)="verImagen(row)"  
-                        data-toggle="modal" data-target="#exampleModalCenter">Imagen</button>
+                        <button class="btn btn-sm btn-warning mr-1"  (click)="verImagen(row)">Imagen</button>
                         <button class="btn btn-sm btn-warning mr-1"  *ngIf = "false"  (click)="edit(row)">Editar</button>
                         <button class="btn btn-sm btn-danger"  *ngIf = "false" (click)="row.confirm=true">Eliminar</button>
                     </div>
@@ -52,6 +51,11 @@
         </table>
     </div>
 </div>
+
+<!-- Button trigger modal -->
+<button *ngIf = "false" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button> 
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -64,7 +68,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <img id="imagen-log" [src]="currentImagen">
+          ...
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
