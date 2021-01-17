@@ -32,7 +32,6 @@ class ImagenController extends Controller
      */
     public function store(Request $request)
     {
-        error_log("en el controller");
         $image = $request['image'];  // your base64 encoded
         $image = str_replace('data:image/png;base64,', '', $image);
         $image = str_replace(' ', '+', $image);

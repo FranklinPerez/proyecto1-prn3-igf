@@ -18,6 +18,7 @@ export class LogEmpleadoComponent implements OnInit {
 
   public data: LogEmpleado[];
   public current: LogEmpleado;
+  public currentImagen;
 
   constructor (
     private service: LogEmpleadoService,
@@ -62,6 +63,10 @@ export class LogEmpleadoComponent implements OnInit {
     this.crudOperation.isVisible = true;
     this.crudOperation.isNew = false;
     this.current = row;
+  }
+
+  verImagen(row){
+    this.service.readImagen(row.id);
   }
 
   delete(id){

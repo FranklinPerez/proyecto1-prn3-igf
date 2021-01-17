@@ -26,6 +26,7 @@ import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.compo
 import { AsignacionSalaService } from './asignacion-sala/asignacion-sala.service';
 import { ImagenesService } from './salas/imagenes.service';
 import { AuthService } from './login/auth.service';
+import { InstanciaSalaComponent } from './instancia-sala/instancia-sala.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AuthService } from './login/auth.service';
     SalasComponent,
     NotificacionPersonalComponent,
     AsignacionSalaComponent,
+    InstanciaSalaComponent,
   ],
   imports: [
     BrowserModule,

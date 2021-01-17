@@ -16,9 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('usuarios/disponibles', 'UsuarioController@getDisponibles');
 Route::resource('usuarios', 'UsuarioController');
 Route::post('logins', 'LoginController@buscarUsuario');
 Route::resource('empleados', 'EmpleadoController');
+Route::get('log_empleados/{id}/imagen', 'LogEmpleadoController@getImagen');
 Route::resource('log_empleados','LogEmpleadoController');
 Route::resource('rols', 'RolController');
 Route::resource('panels', 'PanelController');
@@ -31,6 +33,8 @@ Route::resource('asignacion', 'AsignacionController');
 Route::get('logouts/{id}', 'LoginController@cerrarSesion');
 Route::get('mynotis/{id}', 'notificacionPersonalController@getByUser');
 Route::get('imagen/save', 'ImagenController@store');
+Route::get('miasignacion', 'AsignacionController@findByUsuarioAndSala');
+
 
 
 

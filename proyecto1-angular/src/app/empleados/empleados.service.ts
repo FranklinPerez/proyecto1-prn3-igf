@@ -14,9 +14,6 @@ export class EmpleadosService {
   read(){
     return this.http.get(`${baseURL}/empleados`);
   }
-  readUsuarios(){
-    return this.http.get(`${baseURL}/usuarios`);
-  }
 
   readOne(id){
     return this.http.get(`${baseURL}/empleados/${id}`);

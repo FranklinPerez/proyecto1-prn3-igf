@@ -37,10 +37,9 @@
 </div>
 
 
-<div class="card" >
+<div class="card" *ngIf="!instancia.activa">
     <div class="card-header">
-        <strong>Salas</strong>
-        <button class="btn btn-sm btn-success float-right" *ngIf="permisos.any.canCreate" (click)="new()">Nuevo Sala</button>
+        <strong>Mis Salas</strong>
     </div>
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
@@ -56,16 +55,56 @@
                 <td class="text-center">{{row.tiempo_captura}} min</td>
                 <td class="text-right">
                     <div *ngIf="!row.confirm">
+                        <button class="btn btn-sm btn-info mr-1" *ngIf="permisos.any.canRead" (click)="entrarSala(row)">Entrar</button>
                         <button class="btn btn-sm btn-info mr-1" *ngIf="permisos.any.canEdit" (click)="show(row)">Ver</button>
-                        <button class="btn btn-sm btn-warning mr-1" *ngIf="permisos.any.canDelete" (click)="edit(row)">Editar</button>
-                        <button class="btn btn-sm btn-danger" (click)="row.confirm=true">Eliminar</button>
-                    </div>
-                    <div *ngIf="row.confirm">
-                        <button class="btn btn-sm btn-success mr-1" (click)="delete(row.id)">Confirmar</button>
-                        <button class="btn btn-sm btn-danger" (click)="row.confirm=false">Cancelar</button>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
 </div>
+
+<div class="card" *ngIf="instancia.activa">
+    <div class="card-header">
+        <strong >Sala</strong>
+        <button type = "button"class= "btn btn-sm btn-success float-right ml-1"
+            (click)="takeSnapshot()">Capturar</button>
+        <button type = "button" class="btn btn-sm btn-success float-right ml-1" *ngIf="!instancia.capturando"
+            (click)="capturar()">Compartir</button>
+        <button type = "button" class="btn btn-sm btn-warning float-right ml-1" *ngIf="instancia.capturando"
+            (click)="parar()">Parar</button>
+        <button type = "button"  class="btn btn-sm btn-danger float-right" (click)="salirSala()">Salir</button>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <h5 *ngIf = "current">Asunto: {{current.asunto}} </h5>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <app-panel></app-panel>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #video {
+        border: 1px solid #999;
+        width: 98%;
+        max-width: 860px;
+        margin-top: 2%;
+    }
+
+    #video-camera {
+        margin-top: 2%;
+        border: 1px solid #999;
+        width: 98%;
+        max-width: 860px;
+    }
+</style>
+
+<h6  class="mt-4" >Compartiendo Pantalla</h6>
+<video id="video" title="pantalla" autoplay></video>
+<h6  class="mt-4">Compartiendo webcam</h6>
+<video id="video-camera" title="webcam" autoplay></video>
+<!-- onSeeked="sendScreen()" -->

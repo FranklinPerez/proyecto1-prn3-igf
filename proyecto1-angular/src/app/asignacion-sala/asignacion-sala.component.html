@@ -10,7 +10,7 @@
         <label>Seleccione un Empleado: </label> <br>
         <select required [attr.readonly]="!crudOperation.isEditable?true:null"
          class="form-control" id="id_empleados_asignado" [(value)]="current.id_empleados_asignado" name="current.id_empleados_asignado" [(ngModel)]="current.id_empleados_asignado" >
-            <option *ngFor= 'let emp of empleados'  [ngValue]="emp.id">{{emp.codigoEmpleado}} {{emp.nombreEmpleado}} {{emp.apellidosEmpleado}}</option>
+            <option *ngFor= 'let emp of empleados'  [ngValue]="emp.id">{{emp.codigo}} {{emp.nombre}} {{emp.apellidos}}</option>
 
         </select>
         <br>
@@ -32,13 +32,13 @@
 <div class="card">
     <div class="card-header">
         <strong>Salas</strong>
-        <button class="btn btn-sm btn-success float-right ml-1" (click)="capturar()">Capturar</button>
         <button class="btn btn-sm btn-success float-right" *ngIf="permisos.any.canCreate" (click)="new()">Nueva Asignaci&oacute;n Sala</button>
     </div>
 
     <div class="card-body">
         <table class=" table table-sm table-striped table-over ">
             <tr>
+                <th>ID Asignacion</th>
                 <th class="text-center">C&oacute;digo empleado</th>
                 <th class="text-center">Nombre Empleado</th>
                 <th class="text-center">N&uacute;mero de Sala</th>
@@ -47,8 +47,9 @@
                 <th class="text-center">Opciones</th>
             </tr>
             <tr *ngFor="let row of asigsala">
-                <td class="text-center">{{row.codigoEmpleado}}</td>
-                <td class="text-center">{{row.apellidosEmpleado}}, {{row.nombreEmpleado}}</td>
+                <td class="text-center">{{row.id}}</td>
+                <td class="text-center">{{row.codigo}}</td>
+                <td class="text-center">{{row.apellidos}}, {{row.nombre}}</td>
                 <td class="text-center">{{row.numeroSala}}</td>
                 <td class="text-center">{{row.asunto}}</td>
 

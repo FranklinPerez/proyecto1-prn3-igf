@@ -96,14 +96,6 @@ export class AsignacionSalaComponent implements OnInit {
     });
   }
 
-  capturar() {
-   // screenshot({ filename: 'shot.jpg' }).then((imgPath) => {
-      // imgPath: absolute path to screenshot
-      // created in current working directory named shot.png
-    //});
-
-  }
-
   onCancelBtn(){
     this.crudOperation.isVisible = false;
     this.crudOperation.isEditable = true;

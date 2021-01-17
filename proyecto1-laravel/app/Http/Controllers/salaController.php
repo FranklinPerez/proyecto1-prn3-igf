@@ -11,9 +11,19 @@ class salaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return sala::all();
+        $idUser = $request['usuario_id'];
+        if($idUser){
+            return sala::join('asignacions','salas.id','=','asignacions.id_sala_asignada')
+            ->join('empleados','asignacions.id_empleados_asignado','=','empleados.id')
+            ->where('empleados.usuario_id','=',$idUser)
+            ->select('salas.id','salas.numeroSala', 'salas.asunto', 'salas.tiempoTrabajo', 'salas.tiempo_captura', 'salas.supervisor_id','salas.created_at')
+            ->orderBy('salas.id','ASC')
+            ->get();
+        }
+        return sala::orderBy('salas.id','ASC')
+                    ->get();
     }
 
     /**

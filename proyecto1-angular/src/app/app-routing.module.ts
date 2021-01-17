@@ -10,6 +10,7 @@ import { SalasComponent } from './salas/salas.component';
 import { NotificacionPersonalComponent } from './notificacion-personal/notificacion-personal.component';
 import { PanelPersonalComponent } from './panel-personal/panel-personal.component';
 import { AsignacionSalaComponent } from './asignacion-sala/asignacion-sala.component';
+import { InstanciaSalaComponent } from './instancia-sala/instancia-sala.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'panel-personal', component: PanelPersonalComponent },
     { path: 'asignacionsalas', component: AsignacionSalaComponent },
     { path: 'noti-personales', component: NotificacionPersonalComponent },
+    { path: 'mis-salas', component: InstanciaSalaComponent },
 ];
 
 @NgModule({
