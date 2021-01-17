@@ -15,9 +15,7 @@ class CreateLogEmpleadosTable extends Migration
     {
         Schema::create('log_empleados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ubicacionlog');//Mismo nombre que en el modelo para las columnas.
             $table->timestamps();
-
 
             $table->unsignedBigInteger('empleado_id');
             $table->foreign('empleado_id')->references('id')->on('empleados');

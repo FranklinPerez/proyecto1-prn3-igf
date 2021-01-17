@@ -16,7 +16,11 @@ export class LogEmpleadoService {
     return this.http.get(`${baseURL}/log_empleados`);
   }
 
-  insert(data: LogEmpleado){
+  readImagen(id: number) {
+    return this.http.get(`${baseURL}/log_empleados/${id}/imagen`);
+  }
+
+  insert(data: LogEmpleado) {
     return this.http.post(`${baseURL}/log_empleados`, data);
   }
 

@@ -16,6 +16,10 @@ export class SalasService {
     return this.http.get(`${baseURL}/salas`);
   }
 
+  readMines(id) {
+    return this.http.get(`${baseURL}/salas`, { params: { usuario_id: id } });
+  }
+
   insert(data: Sala) {
     return this.http.post(`${baseURL}/salas`, data);
   }
@@ -34,7 +38,7 @@ export class SalasService {
 
   getDataCanvas(mediaElement) {
     var context;
-    var width = mediaElement.offsetWidth  , height = mediaElement.offsetHeight;
+    var width = mediaElement.offsetWidth, height = mediaElement.offsetHeight;
 
     let canvas = document.createElement('canvas');
     canvas.width = width;

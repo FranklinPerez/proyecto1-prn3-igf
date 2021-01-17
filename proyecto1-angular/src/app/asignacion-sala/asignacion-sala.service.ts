@@ -17,6 +17,11 @@ export class AsignacionSalaService {
     return this.http.get(`${baseURL}/asignacion`);
   }
 
+  readMyAsigSala(data) {
+    return this.http.get(`${baseURL}/miasignacion`,{params:data});
+  }
+
+
   readEmpleados() {
     return this.http.get(`${baseURL}/empleados`);
   }

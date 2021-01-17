@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use App\LogEmpleado;
+use App\Imagen;
 
 class LogEmpleadoController extends Controller
 {
@@ -19,6 +22,24 @@ class LogEmpleadoController extends Controller
     {
         return LogEmpleado::find($logEmpleado->id);
     }
+
+    public function getImagen($id)
+    {
+        $imagen = Imagen::join('log_empleados','log_empleados.id','=','imagens.log_empleado_id')
+            ->where('log_empleados.id','=',$id)
+            ->first();
+        if($imagen){
+            $fileName = 'public/imagenes/'.$imagen->image;
+            error_log($fileName);
+            if(Storage::disk('public')->exists($fileName)) {
+                $file = Storage::disk('public')->path($fileName);
+                return response($file, 200)
+                ->header('Content-Type', 'image/png');
+            }
+        }
+        return null;
+    }
+
     public function update(Request $request, LogEmpleado $logEmpleado)
     {
         $logEmpleado->update($request->all());

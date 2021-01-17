@@ -1,6 +1,5 @@
 export class LogEmpleado {
-    id: number;
-    ubicacionlog: string;
+    id?: number;
     created_at?: Date;
     updated_at?: Date;
     empleado_id: number;

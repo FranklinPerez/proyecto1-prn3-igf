@@ -64,6 +64,12 @@ export class LogEmpleadoComponent implements OnInit {
     this.current = row;
   }
 
+  verImagen(row){
+    this.service.readImagen(row.id).subscribe((res) => {
+      console.log(res);
+    })
+  }
+
   delete(id){
     this.service.delete(id).subscribe(res=>{
       this.crudOperation.isNew = false;

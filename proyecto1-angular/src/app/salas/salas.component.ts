@@ -23,24 +23,6 @@ export class SalasComponent implements OnInit {
   data: Sala[];
   current: Sala;
 
-  public instancia = {
-    activa: false,
-    capturando: false,
-    camera: false,
-    screen: false
-  }
-
-  videoElement = <HTMLMediaElement>document.getElementById("video");
-  videoCameraElement = <HTMLMediaElement>document.getElementById("video-camera");
-
-  displayMediaOptions = {
-    video: {
-      cursor: 'always',
-      frameRate: 0.5
-    },
-    audio: false
-  }
-
   constructor (private service: SalasService,
     private imagenService: ImagenesService,
     private cookieService: CookieService,
@@ -96,7 +78,7 @@ export class SalasComponent implements OnInit {
   }
 
   show(row) {
-    this.service.readOne(row).subscribe(res => {
+    this.service.readOne(row.id).subscribe(res => {
       this.crudOperation.isVisible = true;
       this.crudOperation.isNew = false;
       this.crudOperation.isEditable = false;
@@ -108,102 +90,6 @@ export class SalasComponent implements OnInit {
   onCancelBtn() {
     this.crudOperation.isVisible = false;
     this.crudOperation.isEditable = true;
-  }
-
-  entrarSala(row) {
-    this.instancia.activa = true;
-    this.current = row;
-    //this.displayMediaOptions.video.frameRate = (1 / (this.current.tiempo_captura * 60));
-  }
-
-  salirSala() {
-    this.instancia.activa = false;
-  }
-
-  async capturar(row) {
-    this.instancia.capturando = true;
-    this.current = row;
-
-    this.videoElement = <HTMLMediaElement>document.getElementById("video");
-    this.videoCameraElement = <HTMLMediaElement>document.getElementById("video-camera");
-
-    const mediaDevices = navigator.mediaDevices as any;
-    try {
-      this.videoElement.srcObject = await mediaDevices.getDisplayMedia(this.displayMediaOptions);
-      if (this.videoElement) {
-        this.instancia.screen = true;
-        this.videoElement.play();
-      }
-    } catch (error) {
-      console.error("Error: User display screen not found")
-      this.videoElement.srcObject = null;
-      this.instancia.screen = false;
-    }
-
-    try {
-      this.videoCameraElement.srcObject = await mediaDevices.getUserMedia(this.displayMediaOptions);
-      this.videoCameraElement.play();
-      if (this.videoElement) {
-        this.instancia.camera = true;
-        this.videoCameraElement.play();
-      }
-    } catch (error) {
-      console.error("Error: User camera not found")
-      this.videoCameraElement.src = null;
-      this.instancia.camera = false;
-    }
-  }
-
-  parar() {
-    if (this.videoElement.srcObject) {
-      this.videoElement.srcObject = null;
-    }
-    if (this.videoCameraElement.srcObject) {
-      this.videoCameraElement.srcObject = null;
-    }
-    this.instancia.capturando = false;
-    this.instancia.screen = false;
-    this.instancia.camera = false;
-  }
-
-  takeSnapshot(row) {
-    this.current = row;
-    if (this.instancia.activa) {
-      if (this.instancia.screen) {
-        const canvasDataScreen = this.service.getDataCanvas(this.videoElement);
-        const imagenDetalle = new ImagenDetalle();
-        
-        imagenDetalle.image = canvasDataScreen;
-        imagenDetalle.log_empleado_id = 1;
-        imagenDetalle.tipo = true;
-
-        this.imagenService.insert(imagenDetalle).subscribe((res) => {
-          console.log(res);
-        })
-      }
-
-      if (this.instancia.camera) {
-        const canvasDataCamera = this.service.getDataCanvas(this.videoCameraElement);
-
-        const imagenDetalle = new ImagenDetalle();
-        imagenDetalle.image = canvasDataCamera;
-        imagenDetalle.log_empleado_id = 1;
-        imagenDetalle.tipo = true;
-
-        this.imagenService.insert(imagenDetalle).subscribe((res) => {
-          console.log(res);
-        })
-        //var imgCamera = document.querySelector('img') || document.createElement('img');
-        //imgCamera.src = canvasDataCamera;
-        //console.log(imgCamera);
-        //document.appendChild(imgCamera);
-      }
-
-    }
-  }
-
-  sendScreen() {
-    alert('holi');
   }
 
 }

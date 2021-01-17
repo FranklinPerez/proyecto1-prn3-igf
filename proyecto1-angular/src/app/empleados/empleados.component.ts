@@ -3,6 +3,7 @@ import { Usuario } from '../compartido/models/usuario.model';
 import { PermisosRecurso, Recursos } from '../compartido/roles.config';
 import { getPermisosRecurso } from '../compartido/validar-permiso';
 import { AuthService } from '../login/auth.service';
+import { UsuariosService } from '../usuarios/usuarios.service';
 import { Empleado } from './empleado.model';
 import { EmpleadosService } from './empleados.service';
 
@@ -22,6 +23,7 @@ export class EmpleadosComponent implements OnInit {
   
   constructor (
     private service: EmpleadosService,
+    private usuariosService: UsuariosService,
     private authService: AuthService) {
     this.data=[];
     this.usuarios=[];
@@ -33,7 +35,7 @@ export class EmpleadosComponent implements OnInit {
       this.current= new Empleado();
     });
 
-    this.service.readUsuarios().subscribe((res:any[])=>{
+    this.usuariosService.readDisponibles().subscribe((res:any[])=>{
         this.usuarios=res;
     });
 

@@ -23,6 +23,15 @@ class UsuarioController extends Controller
 
     }
 
+    public function getDisponibles(Request $request) //no asignados a empleados
+    {      
+        return Usuario::select('usuarios.id','usuarios.username','usuarios.email','usuarios.rol_id','usuarios.password')
+            ->whereNotIn('id',function($query){
+                $query->select('usuario_id')->from('empleados');
+            })
+            ->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +46,6 @@ class UsuarioController extends Controller
             'email' => $request['email'],
             'rol_id' => $request['rol_id'],
             'password' => Crypt::encryptString($request['password']),
-            'rol_id' => $request['rol_id'],
         ]);
     }
 

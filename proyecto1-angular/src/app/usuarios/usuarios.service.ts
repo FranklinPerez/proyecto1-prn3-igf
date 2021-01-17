@@ -20,6 +20,11 @@ export class UsuariosService {
     return this.http.get(`${baseURL}/usuarios`);
   }
 
+  readDisponibles(){
+    return this.http.get(`${baseURL}/usuarios/disponibles`);
+  }
+
+
   insert(data: Usuario){
     return this.http.post(`${baseURL}/usuarios`, data);
   }
