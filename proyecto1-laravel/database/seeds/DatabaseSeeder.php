@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('rols')->insert([
-            'nombrerol'  => 'ADMINISTRADOR',
+            'nombrerol'  => 'ADMIN',
         ]);
         DB::table('rols')->insert([
             'nombrerol'  => 'SUPERVISOR',
@@ -32,9 +32,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('empleados')->insert([
-            'codigoEmpleado'=> '001',
-            'nombreEmpleado'  => 'Franklin',
-            'apellidosEmpleado'     => 'Perez',
+            'codigo'=> '001',
+            'nombre'  => 'Franklin',
+            'apellidos'     => 'Perez',
             'dui'  => '12345678-0',
             'usuario_id' => 1,
         ]);
